@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class CarController extends Controller
 {
+
+    public function insert(){
+        return view('admin/addCar');
+    }
     public function store()
     {
     	\App\Car::create([
