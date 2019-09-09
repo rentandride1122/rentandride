@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Car;
+// Insert Car 
 class CarController extends Controller
 {
     public function store()
     {
-    	\App\Car::create([
+    	Car::create([
     		'car_name'=>request('car_name'),
     		'car_model'=>request('car_model'),
     		'car_description'=>request('car_description'),
@@ -19,5 +20,23 @@ class CarController extends Controller
     		'image'=>request('image'),
 
     	]);
+    }
+
+
+    // Update Car
+    public function updatecar(Car $car)
+    {
+$data = request()->validate([
+			'car_name'=>'required',
+    		'car_model'=>'required',
+    		'car_description'=>'required',
+    		'price'=>'required',
+    		'capacity'=>'required',
+    		'fuel_type'=>'required',
+    		'aircondition'=>'required',
+    		'image'=>'required',	
+]);
+		$car->update($data);
+    	
     }
 }

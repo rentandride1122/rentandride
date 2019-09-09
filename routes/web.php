@@ -12,3 +12,7 @@
 */
 
 Route::post('/admin/createcar','CarController@store');
+Route::patch('/admin/updatecar/{car}','CarController@updatecar');
+
+
+
