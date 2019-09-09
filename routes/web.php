@@ -10,5 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/', 'HomeController@index')->name('user');
+Route::get('/admin/createcar','CarController@insert');
 Route::post('/admin/createcar','CarController@store');
+
+
+Auth::routes();
