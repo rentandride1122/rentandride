@@ -35,16 +35,7 @@ class Add_Car_Test extends TestCase
     public function admin_can_update_car()
     {
         $this->withoutExceptionHandling();
-        $this->post('/admin/createcar',[
-            'car_name'=>'BMW',
-            'car_model'=>'123',
-            'car_description'=>'new model car',
-            'price'=>'2500',
-            'capacity'=>'5',
-            'fuel_type'=>'Disel',
-            'aircondition'=>'yes',
-            'image'=>'testimg',
-        ]);
+      
 
         $car = Car::first();
         $response= $this->patch('/admin/updatecar/'.$car->id,[
@@ -65,6 +56,25 @@ class Add_Car_Test extends TestCase
         $this->assertEquals('petrol',Car::first()->fuel_type);
         $this->assertEquals('yes',Car::first()->aircondition);
         $this->assertEquals('testimg123',Car::first()->image);
+
+
+    }
+
+    // Delete Car
+
+    /** @test */
+
+    public function admin_can_delete_car()
+    {
+        $this->withoutExceptionHandling();
+      
+
+        $car = Car::first();
+        $this -> assertCount(1,Car::all());
+
+
+        $response = $this->delete('/admin/deletecar/'.$car->id);
+        $this -> assertCount(0,Car::all());
 
 
     }

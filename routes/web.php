@@ -13,6 +13,8 @@
 
 Route::post('/admin/createcar','CarController@store');
 Route::patch('/admin/updatecar/{car}','CarController@updatecar');
+Route::delete('/admin/deletecar/{car}','CarController@deletecar');
+
 
 
 

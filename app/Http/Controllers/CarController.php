@@ -39,4 +39,7 @@ $data = request()->validate([
 		$car->update($data);
     	
     }
+    public function deletecar(Car $car){
+    	$car->delete();
+    }
 }
