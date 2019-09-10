@@ -7,6 +7,10 @@ use App\Car;
 // Insert Car 
 class CarController extends Controller
 {
+
+    public function insert(){
+        return view('admin/addCar');
+    }
     public function store()
     {
     	Car::create([
