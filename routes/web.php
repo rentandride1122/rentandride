@@ -14,5 +14,13 @@ Route::get('/', 'HomeController@index')->name('user');
 Route::get('/admin/createcar','CarController@insert');
 Route::post('/admin/createcar','CarController@store');
 
+Route::patch('/admin/updatecar/{car}','CarController@updatecar');
+Route::delete('/admin/deletecar/{car}','CarController@deletecar');
+
+
+
+
+
 
 Auth::routes();
+
