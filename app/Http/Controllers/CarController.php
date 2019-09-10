@@ -42,4 +42,10 @@ $data = request()->validate([
     public function deletecar(Car $car){
     	$car->delete();
     }
+ 	public function viewcar()
+ 	{
+ 		return viewcar('admin/viewcar');
+	   	
+    }
+       
 }

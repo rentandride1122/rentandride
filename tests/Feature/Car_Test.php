@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Car;
 
-class Add_Car_Test extends TestCase
+class Car_Test extends TestCase
 {
    // use RefreshDatabase;
    /** @test */
@@ -77,5 +77,16 @@ class Add_Car_Test extends TestCase
         $this -> assertCount(0,Car::all());
 
 
+    }
+
+     /** @test */
+
+    public function admin_can_view_car()
+    {
+        $this->withoutExceptionHandling();
+        $this ->actingas(factory(Car::class)->create());
+
+        $response = $this->get('/admin/viewcar');
+        $response->assertOk();
     }
 }
