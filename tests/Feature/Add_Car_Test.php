@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Car;
 
+
 class Add_Car_Test extends TestCase
 {
    use RefreshDatabase;
@@ -28,4 +29,6 @@ class Add_Car_Test extends TestCase
         $this->assertCount(1,Car::all());
 
     }
+
+    
 }
