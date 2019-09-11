@@ -78,9 +78,12 @@ $data = request()->validate([
     public function deletecar(Car $car){
     	$car->delete();
     }
+
+
  	public function viewcar()
  	{
- 		return viewcar('admin/viewcar');
+        $cars = Car::all();
+ 		return view('admin.viewcar',compact('cars'));
 	   	
     }
        
