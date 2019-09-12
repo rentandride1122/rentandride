@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Car;
-// Insert Car 
+
 class CarController extends Controller
 {
   
@@ -63,18 +63,23 @@ class CarController extends Controller
     // Update Car
     public function updatecar(Car $car)
     {
-$data = request()->validate([
-			'car_name'=>'required',
-    		'car_model'=>'required',
-    		'car_description'=>'required',
-    		'price'=>'required',
-    		'capacity'=>'required',
-    		'fuel_type'=>'required',
-    		'aircondition'=>'required',
-    		'image'=>'required',	
-]);
+        $data = request()->validate([
+        			'car_name'=>'required',
+            		'car_model'=>'required',
+            		'car_description'=>'required',
+            		'price'=>'required',
+            		'capacity'=>'required',
+            		'fuel_type'=>'required',
+            		'aircondition'=>'required',
+            		'image'=>'required',	
+        ]);
 		$car->update($data);
     	
+    }
+
+    public function editcar($id){
+        $car = Car::find($id);
+        return view('admin/editcar',compact('car'));
     }
     public function deletecar(Car $car){
     	$car->delete();

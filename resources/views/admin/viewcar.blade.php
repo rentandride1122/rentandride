@@ -66,9 +66,9 @@
                    <!--  <td><span class="label label-info label-mini">Due</span></td> -->
                     <td>
                      <!--  <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button> -->
-                      <a href="{{ url('admin/edit/car/'.$c['id']) }}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>
+                      <a href="{{ url('admin/updatecar/'.$c['id']) }}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>
 
-                      <form action = "{{ url('admin/car/delete') }}" method = 'POST'>
+                      <form action = "{{ url('admin/deletecar') }}" method = 'POST'>
                       <input type = 'hidden' name = 'id' value = "{{ $c['id'] }}" />
                       <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
                       <input type = 'hidden' name = '_method' value = 'DELETE' />

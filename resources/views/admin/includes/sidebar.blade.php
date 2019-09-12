@@ -2,7 +2,7 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="{{ url('/admin/profile')}}"><img src="{{ asset('assets/ferrari1.jfif')}}" class="img-circle" width="80"></a></p>
+          <p class="centered"><a href="{{ url('/admin/profile')}}"><img src="{{ asset('images/ferrari1.jfif')}}" class="img-circle" width="80"></a></p>
           <h5 class="centered">Rudra Rajbanshi</h5>
           <li class="mt">
             <a class="active" href="index.html">
@@ -11,7 +11,7 @@
               </a>
           </li>
            <li>
-            <a href="{{ url('admin/car/view') }}">
+            <a href="{{ url('admin/viewcar') }}">
               <i class="fa fa-map-marker"></i>
               <span>Cars</span>
               </a>
