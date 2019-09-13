@@ -6,7 +6,7 @@ Members and Roles in the project
 -Lok Bahadur Baniya (QA)
 -Nabin Khanal (Tester)
 -Rudra Raj Banshi (Developer)
--Nishant Khadka (Developer)
+-Nishan Khadka (Developer)
 
 
 Features in the project
