@@ -19,4 +19,14 @@ class UserController extends Controller
     public function user_index(){
     	return view('user/index');
     }
+
+
+
+  public function changepassword(Request $r)
+    {
+        $validation = array(
+            'password'=>'required',
+);
+            $r->validate($validation);
+
 }

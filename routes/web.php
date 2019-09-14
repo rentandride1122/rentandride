@@ -38,5 +38,7 @@ Route::post('/admin/updatecar','CarController@updatecar');
 Route::delete('/admin/deletecar/{car}','CarController@deletecar');
 Route::get('/admin/viewcar','CarController@viewcar')->name('viewcar');
 
+Route::put('/changepassword/{user}','UserController@changepassword');
+
 Auth::routes();
 
