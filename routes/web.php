@@ -16,6 +16,19 @@ Route::get('/admin/createcar','CarController@insert');
 Route::post('/admin/createcar','CarController@store');
 
 
+
+Route::get('/user/index', 'UserController@user_index')->name('user');
+Route::get('/user/login','UserController@login')->name('user.login');
+Route::get('/user/register','UserController@register')->name('user.register');
+
+Route::get('/admin/updatecar/{car}','CarController@editcar');
+Route::put('/admin/updatecar','CarController@updatecar');
+// Route::delete('/admin/deletecar/{car}','CarController@deletecar');
+Route::get('/admin/viewcar','CarController@viewcar')->name('viewcar');
+
+Route::delete('/admin/deletecar','CarController@deletecar');
+
+
 Route::get('/user/index', 'UserController@user_index')->name('user');
 Route::get('/user/login','UserController@login')->name('user.login');
 Route::get('/user/register','UserController@register')->name('user.register');
