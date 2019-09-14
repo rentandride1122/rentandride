@@ -4,10 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Car;
+
 use File;
 // Insert Car 
+
+
+
 class CarController extends Controller
 {
+  
 
     public function insert(){
         return view('admin/addCar');
@@ -65,6 +70,7 @@ class CarController extends Controller
 //     // Update Car
     public function updatecar(Request $r)
     {
+
 // $data = request()->validate([
 // 			'car_name'=>'required',
 //     		'car_model'=>'required',
@@ -76,6 +82,19 @@ class CarController extends Controller
 //     		'image'=>'required',	
 // ]);
 // 		$car->update($data);
+
+        $data = request()->validate([
+        			'car_name'=>'required',
+            		'car_model'=>'required',
+            		'car_description'=>'required',
+            		'price'=>'required',
+            		'capacity'=>'required',
+            		'fuel_type'=>'required',
+            		'aircondition'=>'required',
+            		'image'=>'required',	
+        ]);
+		$car->update($data);
+
     	
         $validations = array(
             'name' => 'required',
@@ -116,6 +135,7 @@ class CarController extends Controller
         return redirect('/admin/viewcar')->with('msg','Updated successfully');
 
     }
+
 //     public function deletecar(Car $car){
 //     	$car->delete();
 //     }
@@ -137,14 +157,29 @@ public function deletecar(Request $r)
 }
 
 
+    public function editcar($id){
+        $car = Car::find($id);
+        return view('admin/editcar',compact('car'));
+    }
+    public function deletecar(Car $car){
+    	$car->delete();
+    }
+
+
+
  	public function viewcar()
  	{
+
         $cars = Car::orderBy('created_at','DESC')->paginate(5);
 
  		return view('admin.viewcar',compact('cars'));
 
         //Testing
         // return viewcar('admin/viewcar');
+
+        $cars = Car::all();
+ 		return view('admin.viewcar',compact('cars'));
+
 	   	
     }
 
