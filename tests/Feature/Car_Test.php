@@ -131,12 +131,20 @@ class Car_Test extends TestCase
     {
          $this->withoutExceptionHandling();
       
+        $user = \factory(\App\User::class)->create();
 
         $user = User::first();
         $response= $this->put('/user/updateuser/'.$user->id,[
             'name'=>'Nishan Khadka',
+            'address'=>'Lalitpur',
+            'phone'=>'9855253595',
+
         ]);
         $this->assertEquals('Nishan Khadka',User::first()->name);
+        $this->assertEquals('Lalitpur',User::first()->address);
+        $this->assertEquals('9855253595',User::first()->phone);
+
+
       
 
     }

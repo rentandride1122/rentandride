@@ -37,6 +37,8 @@ class UserController extends Controller
         //testing
         $data = request()->validate([
             'name'=>'required',
+            'address'=>'required',
+            'phone'=>'required',
             ]);
         $user->update($data);
 
