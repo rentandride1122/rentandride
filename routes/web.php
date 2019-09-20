@@ -43,6 +43,8 @@ Route::put('/changepassword/{user}','UserController@changepassword');
 Route::put('/user/updateuser/{user}','UserController@updateuser');
 Route::delete('/user/deleteuser/{user}','UserController@deleteuser');
 
+Route::get('/user/update','UserController@update');
+
 
 Auth::routes();
 
