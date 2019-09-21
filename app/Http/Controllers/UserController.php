@@ -49,6 +49,11 @@ class UserController extends Controller
         $user->delete();
     }
 
+       public function update(){
+        return view('user/user_update');
+    }
+
+
 
 }
 
