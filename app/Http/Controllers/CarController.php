@@ -83,14 +83,14 @@ class CarController extends Controller
 // ]);
 // 		$car->update($data);
 
-    	
+
         $validations = array(
             'name' => 'required',
             'model' => 'required',
             'price' => 'required|integer',
             'capacity' => 'required|integer',
             'description' => 'required',
-            'image' => 'mimes:jpeg,bmp,png,gif|max:800'
+            'image' => 'mimes:jpeg,bmp,png,gif|max:3500'
         );
             $r->validate($validations);
             $id = $r->get('id');
@@ -149,7 +149,7 @@ public function deletecar(Request $r)
         $car = Car::find($id);
         return view('admin/editcar',compact('car'));
     }
- 
+
 
 
  	public function viewcar()
@@ -168,6 +168,6 @@ public function deletecar(Request $r)
 	   	
     }
 
- 
+
        
 }

@@ -73,9 +73,7 @@
 
                       <a href="{{ url('/admin/updatecar/'.$c['id']) }}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>
 
-                      <form action = "{{ url('admin/deletecar ') }}" method = 'POST'>
-
-                      <a href="{{ url('admin/updatecar/'.$c['id']) }}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>
+                   
 
                       <form action = "{{ url('admin/deletecar') }}" method = 'POST'>
 
