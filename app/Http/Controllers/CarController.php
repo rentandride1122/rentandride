@@ -83,26 +83,14 @@ class CarController extends Controller
 // ]);
 // 		$car->update($data);
 
-        $data = request()->validate([
-        			'car_name'=>'required',
-            		'car_model'=>'required',
-            		'car_description'=>'required',
-            		'price'=>'required',
-            		'capacity'=>'required',
-            		'fuel_type'=>'required',
-            		'aircondition'=>'required',
-            		'image'=>'required',	
-        ]);
-		$car->update($data);
-
-    	
+            	
         $validations = array(
             'name' => 'required',
             'model' => 'required',
             'price' => 'required|integer',
             'capacity' => 'required|integer',
             'description' => 'required',
-            'image' => 'mimes:jpeg,bmp,png,gif|max:800'
+            'image' => 'mimes:jpeg,bmp,png,gif|max:3500'
         );
             $r->validate($validations);
             $id = $r->get('id');
@@ -161,9 +149,9 @@ public function deletecar(Request $r)
         $car = Car::find($id);
         return view('admin/editcar',compact('car'));
     }
-    public function deletecar(Car $car){
-    	$car->delete();
-    }
+    // public function deletecar(Car $car){
+    // 	$car->delete();
+    // }
 
 
 
@@ -183,13 +171,13 @@ public function deletecar(Request $r)
 	   	
     }
 
-    public function editcar($id)
-    {
-        $car = Car::find($id);
-        // dd($car);
+    // public function editcar($id)
+    // {
+    //     $car = Car::find($id);
+    //     // dd($car);
 
-        return view('admin/editcar',compact('car'));
+    //     return view('admin/editcar',compact('car'));
 
-    }
+    // }
        
 }
