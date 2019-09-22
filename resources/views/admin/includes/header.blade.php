@@ -232,7 +232,7 @@
       </div>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="{{ url('admin/logout') }}">Logout</a></li>
+          <li><a class="logout" href="{{ url('user/logout') }}">Logout</a></li>
         </ul>
       </div>
     </header>

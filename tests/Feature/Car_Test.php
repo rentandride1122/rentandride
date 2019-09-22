@@ -6,6 +6,8 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Car;
+use App\User;
+use Hash;
 
 class Car_Test extends TestCase
 {
@@ -88,5 +90,79 @@ class Car_Test extends TestCase
 
         $response = $this->get('/admin/viewcar');
         $response->assertOk();
+    }
+
+
+    /** @test */
+    public function admin_can_change_password()
+    {
+
+        $this->withoutExceptionHandling();
+      
+        $oldPassword ='password';
+        $newPassword = 'newPassword';
+        $user = \factory(\App\User::class)->create(['password'=> Hash::make($oldPassword)]);
+
+        $this->actingAs($user);
+
+        $user = User::first();
+        $response=$this->PUT('/changepassword/'.$user->id,[
+            'password'=>'newPassword'
+        ]);
+        $this->assertEquals('newPassword',User::first()->password);
+
+
+
+
+        $response = $this->Call('PUT','/changepassword',array(
+            '_token'=>csrf_token(),
+            'password'=>$oldPassword,
+            'user_type'=>'admin',
+            'newPassword'=>$newPassword,
+            'repeat_new_password'=> $newPassword,
+        ));
+    
+
+            $this->assertTrue(Hash::check($newPassword,$user->password));
+    }
+ /** @test */
+    //update user 
+    public function test_user_update()
+    {
+         $this->withoutExceptionHandling();
+      
+        $user = \factory(\App\User::class)->create();
+
+        $user = User::first();
+        $response= $this->put('/user/updateuser/'.$user->id,[
+            'name'=>'Nishan Khadka',
+            'address'=>'Lalitpur',
+            'phone'=>'9855253595',
+
+        ]);
+        $this->assertEquals('Nishan Khadka',User::first()->name);
+        $this->assertEquals('Lalitpur',User::first()->address);
+        $this->assertEquals('9855253595',User::first()->phone);
+
+
+      
+
+    }
+
+   //delete user 
+     /** @test */
+     public function test_user_delete()
+    {
+        $this->withoutExceptionHandling();
+      
+
+        $user = User::first();
+        $this -> assertCount(1,User::all());
+
+
+        $response = $this->delete('/user/deleteuser/'.$user->id);
+        $this -> assertCount(0,User::all());
+
+
     }
 }

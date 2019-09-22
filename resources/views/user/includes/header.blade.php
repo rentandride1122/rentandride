@@ -78,7 +78,7 @@
                     <div class="col-lg-3 text-right">
                         <div class="header-social-icons">
                         @if(Auth::check())
-                            <a href="#" style="color: yellow">{{ Auth::user()->name }}</a> 
+                            <a href="{{ url('user/update') }}" style="color: yellow">{{ Auth::user()->name }}</a> 
                         @else
                             <a href="{{ url('user/login') }}">Login</a>
                         @endif
@@ -86,6 +86,7 @@
                         <a href="">|</a>
 
                         @if(Auth::check())
+
                            <a href="{{ url('user/logout') }}">Logout</a>
                         @else
                             <a href="{{ url('user/register') }}">Register</a>

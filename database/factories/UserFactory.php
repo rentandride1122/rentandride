@@ -24,22 +24,13 @@ $factory->define(User::class, function (Faker $faker) {
         'email_verified_at' => now(),
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => Str::random(10),
+        'user_type'=>'admin',
+        'address'=>'kathmandu',
+        'phone'=>'9860050467',
+
     ];
 });
-<<<<<<< HEAD
-$factory->define(Car::class, function (Faker $faker) {
-    return [
-        'car_name' => 'BMW',
-        'car_model'=>'123',
-        'car_description'=>'new model car',
-        'price'=>'2500',
-        'capacity'=>'5',
-        'fuel_type'=>'Disel',
-        'aircondition'=>'yes',
-        'image'=>'testimg',
-        
-    ];
-=======
+
 $factory->define(App\Car::class,function(Faker $faker){
 	return [
 		'car_name'=>'BMW',
@@ -52,5 +43,5 @@ $factory->define(App\Car::class,function(Faker $faker){
             'image'=>'testimg',
     		
 	];
->>>>>>> master
+
 });
