@@ -20,7 +20,7 @@ class CarController extends Controller
     public function store(Request $r)
     {
 
-            //Testing
+     //        //Testing
     	// Car::create([
     	// 	'car_name'=>request('car_name'),
     	// 	'car_model'=>request('car_model'),
@@ -68,9 +68,9 @@ class CarController extends Controller
 
 //      Testing Code
 //     // Update Car
-    public function updatecar(Request $r)
+    public function updatecar(Car $car)
     {
-
+        //testing
 // $data = request()->validate([
 // 			'car_name'=>'required',
 //     		'car_model'=>'required',
@@ -83,7 +83,7 @@ class CarController extends Controller
 // ]);
 // 		$car->update($data);
 
-            	
+
         $validations = array(
             'name' => 'required',
             'model' => 'required',
@@ -124,9 +124,9 @@ class CarController extends Controller
 
     }
 
-//     public function deletecar(Car $car){
-//     	$car->delete();
-//     }
+    // public function deletecar(Car $car){
+    // 	$car->delete();
+    // }
 
 
 
@@ -149,9 +149,6 @@ public function deletecar(Request $r)
         $car = Car::find($id);
         return view('admin/editcar',compact('car'));
     }
-    // public function deletecar(Car $car){
-    // 	$car->delete();
-    // }
 
 
 
@@ -171,13 +168,6 @@ public function deletecar(Request $r)
 	   	
     }
 
-    // public function editcar($id)
-    // {
-    //     $car = Car::find($id);
-    //     // dd($car);
 
-    //     return view('admin/editcar',compact('car'));
-
-    // }
        
 }

@@ -23,7 +23,7 @@ Route::get('/user/register','UserController@register')->name('user.register');
 
 Route::get('/admin/updatecar/{car}','CarController@editcar');
 Route::put('/admin/updatecar','CarController@updatecar');
-// Route::delete('/admin/deletecar/{car}','CarController@deletecar');
+Route::delete('/admin/deletecar/{car}','CarController@deletecar');
 Route::get('/admin/viewcar','CarController@viewcar')->name('viewcar');
 
 Route::delete('/admin/deletecar','CarController@deletecar');
@@ -33,10 +33,18 @@ Route::get('/user/index', 'UserController@user_index')->name('user');
 Route::get('/user/login','UserController@login')->name('user.login');
 Route::get('/user/register','UserController@register')->name('user.register');
 
-Route::get('/admin/updatecar/{car}','CarController@editcar');
+Route::patch('/admin/updatecar/{car}','CarController@updatecar');
 Route::post('/admin/updatecar','CarController@updatecar');
 Route::delete('/admin/deletecar/{car}','CarController@deletecar');
 Route::get('/admin/viewcar','CarController@viewcar')->name('viewcar');
+//test change password
+Route::put('/changepassword/{user}','UserController@changepassword');
+
+Route::put('/user/updateuser/{user}','UserController@updateuser');
+Route::delete('/user/deleteuser/{user}','UserController@deleteuser');
+
+Route::get('/user/update','UserController@update');
+
 
 Auth::routes();
 
