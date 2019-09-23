@@ -21,10 +21,17 @@
     <!--== Contact Page Area Start ==-->
     <div class="contact-page-wrao section-padding">
         <div class="container">
+            <!--  <a href="{{ url('user/deleteuser') }}" class="btn btn-danger" style="float: right;">Deactivate account</a> -->
+              <form action = "{{ url('user/deleteuser') }}" method = 'POST'>
+                      <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
+                      <input type = 'hidden' name = '_method' value = 'DELETE' />
+                     <button class="btn btn-danger" style="float: right;">Deactivate Account</button>
+                      </form>
             <div class="row">
+
                 <div class="col-lg-10 m-auto">
                 	   
-                    
+                   
                     	<form method="POST" action="{{ url('user/updateuser') }}" enctype="multipart/form-data">
 						  <div class="form-group">
 						    <label class="control-label col-sm-2">Full name</label>
@@ -51,10 +58,12 @@
 
 						<div class="form-group">
 						    <div class="col-sm-offset-2 col-sm-10">
-						      <input type="submit" class="btn btn-primary" value="Update">
+						      <input type="submit" class="btn btn-success" value="Update">
+                              <a href="" class="btn btn-info" style="background: #FF3E00">Change Password</a>
 						    </div>
 						</div>
 						</form>
+
 
                 </div>
             </div>

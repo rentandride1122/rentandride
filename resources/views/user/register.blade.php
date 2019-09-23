@@ -26,6 +26,20 @@
                 	<div class="login-page-content">
                 		<div class="login-form" style="background: #00FFCC">
                 			<h3>Sign Up</h3>
+                             @if(\Session::has('msg'))
+          <div class = 'alert alert-success'>
+            <p>{{ \Session::get('msg') }}</p>
+          </div></br>
+          @endif
+          @if($errors->any())
+          <div class = 'alert alert-danger'>
+            <ul>
+              @foreach($errors->all() as $e)
+              <li>{{ $e }}</li>
+              @endforeach
+            </ul>
+          </div>
+          @endif
                        
 							<form method="POST" action="{{ route('register') }}">
                                 @csrf
@@ -38,6 +52,24 @@
                                     </span>
                                 @enderror
 								</div>
+                                <div class="name">
+                                      <input placeholder="Address" type="text" class="form-control @error('name') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                </div>
+                                <div class="name">
+                                      <input placeholder="Phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                </div>
 								<div class="username">
 									<input id="email" placeholder="Email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 

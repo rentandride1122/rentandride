@@ -41,7 +41,7 @@ Route::get('/admin/viewcar','CarController@viewcar')->name('viewcar');
 Route::put('/changepassword/{user}','UserController@changepassword');
 
 Route::put('/user/updateuser','UserController@updateuser');
-Route::delete('/user/deleteuser/{user}','UserController@deleteuser');
+Route::delete('/user/deleteuser','UserController@deleteuser');
 
 Route::get('/user/update','UserController@update')->middleware('auth');
 
