@@ -40,10 +40,14 @@ Route::get('/admin/viewcar','CarController@viewcar')->name('viewcar');
 //test change password
 Route::put('/changepassword/{user}','UserController@changepassword');
 
-Route::put('/user/updateuser/{user}','UserController@updateuser');
-Route::delete('/user/deleteuser/{user}','UserController@deleteuser');
 
-Route::get('/user/update','UserController@update');
+Route::put('/user/updateuser','UserController@updateuser');
+Route::delete('/user/deleteuser','UserController@deleteuser');
+
+Route::get('/user/update','UserController@update')->middleware('auth');
+
+Route::get('/user/logout','UserController@logout')->name('user.logout');
+
 
 
 Auth::routes();
