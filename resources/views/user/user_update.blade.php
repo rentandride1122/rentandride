@@ -21,6 +21,7 @@
     <!--== Contact Page Area Start ==-->
     <div class="contact-page-wrao section-padding">
         <div class="container">
+
             <!--  <a href="{{ url('user/deleteuser') }}" class="btn btn-danger" style="float: right;">Deactivate account</a> -->
               <form action = "{{ url('user/deleteuser') }}" method = 'POST'>
                       <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
@@ -44,11 +45,13 @@
 						    <label class="control-label col-sm-2">Phone:</label>
 						    <div class="col-sm-10">
 						      <input type="text" class="form-control" name="phone" value="{{ $user['phone'] }}" required="">
+
 						    </div>
 						  </div>
 						  <div class="form-group">
 						    <label class="control-label col-sm-2">Address:</label>
 						    <div class="col-sm-10">
+
 						      <input type="text" class="form-control" name="address" value="{{ $user['address'] }}" required="">
 						    </div>
 						  </div>
@@ -60,6 +63,7 @@
 						    <div class="col-sm-offset-2 col-sm-10">
 						      <input type="submit" class="btn btn-success" value="Update">
                               <a href="" class="btn btn-info" style="background: #FF3E00">Change Password</a>
+
 						    </div>
 						</div>
 						</form>

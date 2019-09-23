@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+
 use Auth;
+
 
 class UserController extends Controller
 {
@@ -33,6 +35,7 @@ class UserController extends Controller
 
 }
 
+
     public function updateuser(Request $r)
     {
         //testing
@@ -53,7 +56,32 @@ class UserController extends Controller
 
         return redirect('user/index')->with('msg','Updated Successfully');
 
+//     public function updateuser(User $user)
+//     {
+//         //testing
+//         $data = request()->validate([
+//             'name'=>'required',
+//             'address'=>'required',
+//             'phone'=>'required',
+//             ]);
+//         $user->update($data);
+
+// }
+
+
+//   public function deleteuser(User $user){
+//         $user->delete();
+//     }
+
+//        public function update(){
+//         return view('user/user_update');
+//     }
+
+
+
+
 }
+
 
 
   public function deleteuser(){

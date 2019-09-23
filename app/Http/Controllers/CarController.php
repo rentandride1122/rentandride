@@ -68,7 +68,7 @@ class CarController extends Controller
 
 //      Testing Code
 //     // Update Car
-    public function updatecar(Request $r)
+    public function updatecar(Car $car)
     {
         //testing
 // $data = request()->validate([
@@ -82,6 +82,7 @@ class CarController extends Controller
 //     		'image'=>'required',	
 // ]);
 // 		$car->update($data);
+
 
         $validations = array(
             'name' => 'required',
@@ -148,6 +149,7 @@ public function deletecar(Request $r)
         $car = Car::find($id);
         return view('admin/editcar',compact('car'));
     }
+
 
 
  	public function viewcar()
