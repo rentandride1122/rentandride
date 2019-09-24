@@ -43,11 +43,11 @@ Route::put('/changepassword/{user}','UserController@changepassword');
 
 Route::put('/user/updateuser','UserController@updateuser');
 Route::delete('/user/deleteuser','UserController@deleteuser');
-
 Route::get('/user/update','UserController@update')->middleware('auth');
-
 Route::get('/user/logout','UserController@logout')->name('user.logout');
 
+//testing privatecar
+Route::post('/user/createcar','PrivateCarController@carinsert');
 
 
 Auth::routes();
