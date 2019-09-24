@@ -68,7 +68,7 @@ class CarController extends Controller
 
 //      Testing Code
 //     // Update Car
-    public function updatecar(Car $car)
+    public function updatecar(Request $r)
     {
         //testing
 // $data = request()->validate([
