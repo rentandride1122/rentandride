@@ -48,6 +48,8 @@ Route::get('/user/logout','UserController@logout')->name('user.logout');
 
 //testing privatecar
 Route::post('/user/createcar','PrivateCarController@carinsert');
+Route::patch('/user/updatecar','PrivateCarController@updatecar');
+
 
 
 Auth::routes();
