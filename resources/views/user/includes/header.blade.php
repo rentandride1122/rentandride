@@ -124,7 +124,7 @@
                                 <li><a href="{{ url('user/private/car') }}">Private Cars</a></li>
                                 <li><a href="#">Services</a>
                                     <ul>
-                                        <li><a href="{{ url('user/rent_your_car') }}">Rent your car</a></li>
+                                        <li><a href="{{ url('user/createcar') }}">Rent your car</a></li>
                                         <li><a href="driver.html">Sell or Buy car</a></li>
                                       
                                     </ul>
