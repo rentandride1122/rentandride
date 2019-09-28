@@ -165,4 +165,29 @@ class Car_Test extends TestCase
 
 
     }
+        /** @test */
+    public function client_car_insert()
+    {
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        $response= $this->post('/user/createcar',[
+            'car_name'=>'BMW',
+            'car_model'=>'123',
+            'car_description'=>'new model car',
+            'price'=>'2500',
+            'capacity'=>'5',
+            'fuel_type'=>'Disel',
+            'aircondition'=>'yes',
+            'image'=>'testimg',
+            'billbook'=>'image1',
+            'citizenship'=>'image2',
+            'user_id' => $user->id,
+        ]);
+        // $response->assertOk();
+        $this->assertCount(1,Car::all());
+
+    }
 }

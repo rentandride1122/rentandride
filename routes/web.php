@@ -47,9 +47,9 @@ Route::get('/user/update','UserController@update')->middleware('auth');
 Route::get('/user/logout','UserController@logout')->name('user.logout');
 
 //testing privatecar
-Route::post('/user/createcar','PrivateCarController@carinsert');
-Route::patch('/user/updatecar','PrivateCarController@updatecar');
 
+Route::get('/user/createcar','UserCarController@insert')->name('user.insert.car')->middleware('auth');
+Route::post('/user/createcar','UserCarController@store')->name('user.store.car')->middleware('auth');
 
 
 Auth::routes();

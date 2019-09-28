@@ -13,7 +13,7 @@ class clientTest extends TestCase
      *
      * @return void
      */
-    public function client_car_insert()
+    public function a_client_car_insert()
     {
         $this->withoutExceptionHandling();
 
