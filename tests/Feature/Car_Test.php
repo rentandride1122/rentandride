@@ -202,4 +202,15 @@ class Car_Test extends TestCase
         $response->assertOk();
     }
 
+     public function user_can_view_Privatecar()
+    {
+        $this->withoutExceptionHandling();
+        
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        $response = $this->get('/user/viewprivatecar');
+        $response->assertOk();
+    }
+
 }
