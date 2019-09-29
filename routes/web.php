@@ -25,6 +25,8 @@ Route::get('/admin/updatecar/{car}','CarController@editcar');
 Route::put('/admin/updatecar','CarController@updatecar');
 Route::delete('/admin/deletecar/{car}','CarController@deletecar');
 Route::get('/admin/viewcar','CarController@viewcar')->name('viewcar');
+Route::get('/admin/viewprivatecar','CarController@viewprivatecar')->name('viewprivatecar');
+Route::get('/admin/viewprivatecar/{car}','CarController@viewprivatecarById')->name('viewprivatecarsingle');
 
 Route::delete('/admin/deletecar','CarController@deletecar');
 
@@ -45,6 +47,8 @@ Route::put('/user/updateuser','UserController@updateuser');
 Route::delete('/user/deleteuser','UserController@deleteuser');
 Route::get('/user/update','UserController@update')->middleware('auth');
 Route::get('/user/logout','UserController@logout')->name('user.logout');
+
+Route::get('/user/viewcars','UserCarController@viewcar')->name('user.viewcar');
 
 //testing privatecar
 

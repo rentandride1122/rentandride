@@ -120,7 +120,7 @@
                             <ul>
                                 <li><a href="{{ url('user/index') }}">Home</a></li>
                                 
-                                <li><a href="{{ url('user/car') }}">Cars</a></li>
+                                <li><a href="{{ url('user/viewcars') }}">Cars</a></li>
                                 <li><a href="{{ url('user/private/car') }}">Private Cars</a></li>
                                 <li><a href="#">Services</a>
                                     <ul>

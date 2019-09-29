@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use \App\PrivateCar;
+use \App\Car;
 use File;
 
 class UserCarController extends Controller
@@ -73,5 +74,11 @@ class UserCarController extends Controller
 
         return redirect('/user/createcar')->with('msg','your car has been added');
 
+    }
+
+    public function viewcar(){
+         $cars = Car::orderBy('created_at','DESC')->paginate(5);
+
+        return view('user.viewcars',compact('cars'));
     }
 }
