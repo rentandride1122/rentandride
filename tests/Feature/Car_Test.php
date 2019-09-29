@@ -184,6 +184,7 @@ class Car_Test extends TestCase
             'image'=>'testimg',
             'billbook'=>'image1',
             'citizenship'=>'image2',
+            'remarks'=> 'pending',
             'user_id' => $user->id,
         ]);
         // $response->assertOk();

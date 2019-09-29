@@ -68,6 +68,7 @@ class UserCarController extends Controller
         $car->fuel_type = request('fuel_type');
         $car->aircondition = request('aircondition');
         $car->user_id = Auth::user()->id;
+        $car->remarks = 'pending';
         $car->save();
 
         return redirect('/user/createcar')->with('msg','your car has been added');
