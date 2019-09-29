@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Car;
+use \App\PrivateCar;
 
 use File;
 // Insert Car 
@@ -20,18 +21,6 @@ class CarController extends Controller
     public function store(Request $r)
     {
 
-     //        //Testing
-    	// Car::create([
-    	// 	'car_name'=>request('car_name'),
-    	// 	'car_model'=>request('car_model'),
-    	// 	'car_description'=>request('car_description'),
-    	// 	'price'=>request('price'),
-    	// 	'capacity'=>request('capacity'),
-    	// 	'fuel_type'=>request('fuel_type'),
-    	// 	'aircondition'=>request('aircondition'),
-    	// 	'image'=>request('image'),
-
-    	// ]);
          $validation = array(
             'name'=>'required',
             'model'=>'required',
@@ -70,20 +59,6 @@ class CarController extends Controller
 //     // Update Car
     public function updatecar(Request $r)
     {
-        //testing
-// $data = request()->validate([
-// 			'car_name'=>'required',
-//     		'car_model'=>'required',
-//     		'car_description'=>'required',
-//     		'price'=>'required',
-//     		'capacity'=>'required',
-//     		'fuel_type'=>'required',
-//     		'aircondition'=>'required',
-//     		'image'=>'required',	
-// ]);
-// 		$car->update($data);
-
-
         $validations = array(
             'name' => 'required',
             'model' => 'required',
@@ -124,12 +99,6 @@ class CarController extends Controller
 
     }
 
-    // public function deletecar(Car $car){
-    // 	$car->delete();
-    // }
-
-
-
 public function deletecar(Request $r)
 {
     $id = $r->get('id');
@@ -156,16 +125,30 @@ public function deletecar(Request $r)
  	{
 
         $cars = Car::orderBy('created_at','DESC')->paginate(5);
+        $car = Car::all();
 
- 		return view('admin.viewcar',compact('cars'));
-
-        //Testing
-        // return viewcar('admin/viewcar');
-
-        $cars = Car::all();
- 		return view('admin.viewcar',compact('cars'));
+ 		return view('admin.viewcar',compact('cars','car'));
 
 	   	
+    }
+    public function viewprivatecar()
+    {
+
+        $cars = PrivateCar::orderBy('created_at','DESC')->paginate(5);
+        $car = PrivateCar::all();
+
+        return view('admin.viewprivatecar',compact('cars','car'));
+
+        
+    }
+     public function viewprivatecarById($id)
+    {
+
+        $car = PrivateCar::find($id);
+
+        return view('admin.viewsingleprivatecar',compact('car'));
+
+        
     }
 
 

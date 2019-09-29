@@ -9,6 +9,6 @@ class PrivateCar extends Model
 	protected $guarded =[];
     public function user()
     {
-    	return $this->belongsTo('\App\PrivateCar');
+    	return $this->belongsTo('\App\User');
     }
 }

@@ -17,7 +17,7 @@
               </a>
           </li>
           <li>
-            <a href="{{ url('admin/view/private_cars') }}">
+            <a href="{{ url('admin/viewprivatecar') }}">
               <i class="fa fa-map-marker"></i>
               <span>Private Cars</span>
               </a>

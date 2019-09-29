@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Car;
 use App\User;
+use App\PrivateCar;
 use Hash;
 
 class Car_Test extends TestCase
@@ -191,6 +192,7 @@ class Car_Test extends TestCase
         $this->assertCount(1,Car::all());
 
     }
+
     public function client_cart_update()
     {
         $this->withoutExceptionHandling();
@@ -223,4 +225,27 @@ class Car_Test extends TestCase
 
     
     }
+
+
+    public function admin_can_view_Privatecar()
+    {
+        $this->withoutExceptionHandling();
+        // $this ->actingas(factory(PrivateCar::class)->create());
+
+        $response = $this->get('/admin/viewprivatecar');
+        $response->assertOk();
+    }
+
+     public function user_can_view_cars()
+    {
+        $this->withoutExceptionHandling();
+        
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        $response = $this->get('/user/viewcars');
+        $response->assertOk();
+    }
+
+
 }

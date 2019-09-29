@@ -67,6 +67,6 @@ class clientTest extends TestCase
         $this->assertEquals('doc2',Car::first()->citizenship);
         $this->assertEquals($user->id,Car::first()->user_id);
 
-    
+
     }
 }
