@@ -202,7 +202,7 @@ class Car_Test extends TestCase
         $response->assertOk();
     }
 
-     public function admin_can_view_Privatecar()
+     public function user_can_view_Privatecar()
     {
         $this->withoutExceptionHandling();
         
