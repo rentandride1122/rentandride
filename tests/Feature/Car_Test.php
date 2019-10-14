@@ -5,6 +5,9 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use \App\Files;
+use Illuminate\Http\UploadedFile; 
+use Illuminate\Support\Facades\Storage;
 use App\Car;
 use App\User;
 use App\PrivateCar;
@@ -12,6 +15,7 @@ use Hash;
 
 class Car_Test extends TestCase
 {
+    use WithFaker;
    // use RefreshDatabase;
    /** @test */
     public function admin_can_insert_car()
@@ -174,6 +178,11 @@ class Car_Test extends TestCase
         $user = factory(User::class)->create();
         $this->actingAs($user);
 
+        Storage::fake('avatars');
+        $image = UploadedFile::fake()->create('avatar.jpg',12);
+        $billbook = UploadedFile::fake()->create('avatar.jpg',10);
+        $citizenship = UploadedFile::fake()->create('avatar.jpg',11);
+
         $response= $this->post('/user/createcar',[
             'car_name'=>'BMW',
             'car_model'=>'123',
@@ -182,9 +191,9 @@ class Car_Test extends TestCase
             'capacity'=>'5',
             'fuel_type'=>'Disel',
             'aircondition'=>'yes',
-            'image'=>'testimg',
-            'billbook'=>'image1',
-            'citizenship'=>'image2',
+            'image'=>$image,
+            'billbook'=>$billbook,
+            'citizenship'=>$citizenship,
             'remarks'=> 'pending',
             'user_id' => $user->id,
         ]);
@@ -236,7 +245,8 @@ class Car_Test extends TestCase
         $response->assertOk();
     }
 
-     public function user_can_view_cars()
+    /** @test */
+    public function user_can_view_cars()
     {
         $this->withoutExceptionHandling();
         
@@ -244,6 +254,18 @@ class Car_Test extends TestCase
         $this->actingAs($user);
 
         $response = $this->get('/user/viewcars');
+        $response->assertOk();
+    }
+
+    /** @test */
+    public function user_can_view_his_own_cars()
+    {
+        $this->withoutExceptionHandling();
+        
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        $response = $this->get('/user/yourcar');
         $response->assertOk();
     }
 

@@ -16,26 +16,26 @@ class UserCarController extends Controller
 
     public function store(Request $r)
     {
-        $validation = array(
-            'car_name'=>'required',
-            'car_model'=>'required',
-            'price'=>'required|integer',
-            'capacity'=>'required|integer',
-            'car_description'=>'required',
-            'image'=>'mimes:jpeg,bmp,png,gif,jfif|max:3500',
-            'billbook'=>'mimes:jpeg,bmp,png,gif,jfif|max:3500',
-            'citizenship'=>'mimes:jpeg,bmp,png,gif,jfif|max:3500'
-            );
+     //    $validation = array(
+     //        'car_name'=>'required',
+     //        'car_model'=>'required',
+     //        'price'=>'required|integer',
+     //        'capacity'=>'required|integer',
+     //        'car_description'=>'required',
+     //        'image'=>'mimes:jpeg,bmp,png,gif,jfif|max:3500',
+     //        'billbook'=>'mimes:jpeg,bmp,png,gif,jfif|max:3500',
+     //        'citizenship'=>'mimes:jpeg,bmp,png,gif,jfif|max:3500'
+     //        );
 
-    	$r->validate($validation);
+    	// $r->validate($validation);
 
-        $imgname = '';
+        $image = '';
         if ($r->hasfile('image')) {
             $file = $r->file('image');
-            $imgname = date('ymdhis').$file->getClientOriginalName();
+            $image = date('ymdhis').$file->getClientOriginalName();
             $path = public_path().'/uploads/';
 
-            $file->move($path,$imgname);
+            $file->move($path,$image);
         }
 
 
@@ -63,7 +63,7 @@ class UserCarController extends Controller
         $car->price = request('price');
         $car->car_description = request('car_description');
         $car->capacity = request('capacity');
-        $car->image = $imgname;
+        $car->image = $image;
         $car->citizenship = $citizenship;
         $car->billbook = $billbook;
         $car->fuel_type = request('fuel_type');
@@ -80,5 +80,11 @@ class UserCarController extends Controller
          $cars = Car::orderBy('created_at','DESC')->paginate(5);
 
         return view('user.viewcars',compact('cars'));
+    }
+
+    public function viewyourcar(){
+         $cars = PrivateCar::orderBy('created_at','DESC')->paginate(5);
+
+        return view('user.yourcar',compact('cars'));
     }
 }
