@@ -72,7 +72,7 @@ class UserCarController extends Controller
         $car->remarks = 'pending';
         $car->save();
 
-        return redirect('/user/createcar')->with('msg','your car has been added');
+        return redirect('/user/yourcar')->with('msg','your car has been added');
 
     }
 
@@ -83,7 +83,7 @@ class UserCarController extends Controller
     }
 
     public function viewyourcar(){
-         $cars = PrivateCar::orderBy('created_at','DESC')->paginate(5);
+         $cars = PrivateCar::where('user_id',Auth::user()->id)->orderBy('created_at','DESC')->paginate(5);
 
         return view('user.yourcar',compact('cars'));
     }
