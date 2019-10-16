@@ -30,6 +30,19 @@ $factory->define(User::class, function (Faker $faker) {
 
     ];
 });
+$factory->define(Car::class, function (Faker $faker) {
+    return [
+        'car_name'=>'BMW',
+        'car_model'=>'123',
+        'car_description'=>'new model car',
+        'price'=>'2500',
+        'capacity'=>'5',
+        'fuel_type'=>'Disel',
+        'aircondition'=>'yes',
+        'image'=>'testimg',
+
+    ];
+});
 
 $factory->define(App\Car::class,function(Faker $faker){
 	return [
