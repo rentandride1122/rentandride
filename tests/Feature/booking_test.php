@@ -34,7 +34,7 @@ class booking_test extends TestCase
         $this->assertCount(1,Booking::all());
 
     }
-
+/** @test */
     public function booking_car_update()
     {
         $this->withoutExceptionHandling();
@@ -54,4 +54,20 @@ class booking_test extends TestCase
 
 
     }
+/** @test */
+    public function view_booking_car()
+    {
+        $this->withoutExceptionHandling();
+        
+        $user = factory(User::class)->create();
+        // $booking = factory(Booking::class)->create();
+
+        $this->actingAs($user);
+        // $this->actingAs($booking);
+
+
+        $response = $this->get('/client/viewcar');
+        $response->assertOk();
+    }
+
 }
