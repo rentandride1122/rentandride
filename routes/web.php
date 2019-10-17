@@ -60,6 +60,10 @@ Route::get('/user/createcar','UserCarController@insert')->name('user.insert.car'
 Route::post('/user/createcar','UserCarController@store')->name('user.store.car')->middleware('auth');
 
 
+Route::get('/client/bookcar/{id}','BookingController@insert')->middleware('auth');
+Route::post('/client/bookcar','BookingController@store')->middleware('auth');
+
+
 
 Auth::routes();
 
