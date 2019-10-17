@@ -270,4 +270,29 @@ class Car_Test extends TestCase
     }
 
 
+    /** @test */
+    public function a_client_can_book_a_car()
+    {
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create();
+        $car = factory(Car::class)->create();
+        $this->actingAs($user);
+        //$this->actingAs($car);
+
+
+        $response= $this->post('/client/bookcar',[
+            'destination'=>'pokhara',
+            'current_location'=>'katmandu',
+            'days'=>'5',
+            'user_id' => $user->id,
+            'car_id'=> $car->id,
+            //'privatecar_id' => $private_car->id,
+        ]);
+        $response->assertOk();
+        $this->assertCount(1,Booking::all());
+
+    }
+
+
 }
