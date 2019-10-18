@@ -24,4 +24,19 @@ class forum_test extends TestCase
         $this->assertCount(1,Forum::all());
 
     }
+
+    public function forum_update()
+    {
+        $forum = factory(Forum::class)->create();
+        $this->actingAs($forum);
+
+        $response= $this->post('/user/forumupdate',[
+            'message'=> 're testing ',
+        ]);
+    
+        $this->assertEquals('re testing',Forum::first()->message);
+      
+
+
+    }
 }
