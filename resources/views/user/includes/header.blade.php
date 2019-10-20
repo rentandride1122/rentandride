@@ -121,7 +121,7 @@
                                 <li><a href="{{ url('user/index') }}">Home</a></li>
                                 
                                 <li><a href="{{ url('user/viewcars') }}">Cars</a></li>
-                                <li><a href="{{ url('user/private/car') }}">Private Cars</a></li>
+                                <li><a href="{{ url('user/viewprivatecars') }}">Private Cars</a></li>
                                 <li><a href="#">Services</a>
                                     <ul>
                                         <li><a href="{{ url('user/yourcar') }}">Your Cars</a></li>
