@@ -131,7 +131,7 @@
                                 </li>
                                 <li><a href="{{ url('user/forum') }}">Forum</a></li>
                                 <li><a href="{{ url('user/about') }}">About Us</a></li>
-                                <li><a href="{{ url('user/contact') }}">Contact</a></li>
+                                <li><a href="{{ url('user/booking/detail') }}">My Booking</a></li>
                             </ul>
                         </nav>
                     </div>
