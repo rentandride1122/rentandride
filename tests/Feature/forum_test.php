@@ -39,4 +39,14 @@ class forum_test extends TestCase
 
 
     }
+    public function admin_can_view_forum()
+    {
+        $this->withoutExceptionHandling();
+        $this ->actingas(factory(Forum::class)->create());
+
+        $response = $this->get('/admin/viewforum');
+        $response->assertOk();
+    }
+
+   
 }
