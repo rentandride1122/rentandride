@@ -106,6 +106,11 @@ class UserController extends Controller
         return redirect('/user/index');
     }
 
+    public function view_users(){
+        $users = User::orderBy('created_at','DESC')->paginate(10);
+        return view('admin/viewusers',compact('users'));
+    }
+
 
 
 }
