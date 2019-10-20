@@ -57,4 +57,7 @@ $factory->define(Car::class, function (Faker $faker) {
     		
 // 	];
 
-// });
+
+});
+
+
