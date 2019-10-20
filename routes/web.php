@@ -67,6 +67,9 @@ Route::get('/user/booking/detail','BookingController@view')->middleware('auth');
 Route::post('/user/comment','ForumController@comment');
 Route::get('/user/forum','ForumController@forum');
 
+Route::get('/admin/booking/detail','BookingController@view_bookings');
+
+
 
 Auth::routes();
 

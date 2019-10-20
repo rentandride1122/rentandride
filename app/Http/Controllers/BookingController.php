@@ -43,7 +43,13 @@ class BookingController extends Controller
     }
     public function view(){
     	$booking = Booking::where('user_id',Auth::user()->id)->get();
-    	
+
     	return view('user/mybooking',compact('booking'));
+    }
+
+    public function view_bookings(){
+    	$bookings = Booking::orderBy('created_at','DESC')->paginate(8);
+    	
+    	return view('admin/viewbookings',compact('bookings'));
     }
 }
