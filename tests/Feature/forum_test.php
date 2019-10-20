@@ -48,5 +48,18 @@ class forum_test extends TestCase
         $response->assertOk();
     }
 
-   
+    public function admin_can_delete_forum()
+    {
+        $this->withoutExceptionHandling();
+      
+
+        $forum = Forum::first();
+        $this -> assertCount(1,Forum::all());
+
+
+        $response = $this->delete('/admin/deleteform/'.$forum->id);
+        $this -> assertCount(0,Forum::all());
+
+
+    }
 }
