@@ -65,6 +65,9 @@ Route::post('/client/bookcar','BookingController@store')->middleware('auth');
 Route::get('/user/booking/detail','BookingController@view')->middleware('auth');
 
 
+Route::get('/admin/booking/detail','BookingController@view_bookings');
+
+
 
 Auth::routes();
 

@@ -29,7 +29,7 @@
               </a>
           </li>
            <li>
-            <a href="#">
+            <a href="{{ url('admin/booking/detail') }}">
               <i class="fa fa-map-marker"></i>
               <span>Booking Details</span>
               </a>
