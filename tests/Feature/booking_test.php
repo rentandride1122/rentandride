@@ -69,5 +69,19 @@ class booking_test extends TestCase
         $response = $this->get('/client/viewcar');
         $response->assertOk();
     }
+    public function delete_booking_car()
+    {
+        $this->withoutExceptionHandling();
+      
+
+        $booking = Booking::first();
+        $this -> assertCount(1,Booking::all());
+
+
+        $response = $this->delete('/client/deletebooking/'.$booking->id);
+        $this -> assertCount(0,Booking::all());
+
+
+    }
 
 }
