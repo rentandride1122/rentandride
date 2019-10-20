@@ -64,6 +64,7 @@
                                                       <img style="height: 300px" src="{{ URL::to('/').'/uploads/'.$b->car['image'] }}" alt="JSOFT">
                                                    </a>
                                                 </div>
+                                                <h5 align="right">{{ $b['remarks'] }}</h5>
                                                  <h5 align="right">{{ $b['created_at'] }}</h5>
 
                                                 <div class="p-car-content">
@@ -82,7 +83,8 @@
                                                     <h5>Start Date: {{ $b['booking_from'] }}</h5>
                                                     <h5>Return Date: {{ $b['booking_to'] }}</h5>
 
-                                                   
+                                                    ----------------------------
+                                                    <br>
 
                                                     <a href="{{ url('user/update/yourcar/'.$b['id']) }}" class="btn btn-success">Change date</a><br>
                                                     or

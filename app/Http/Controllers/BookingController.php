@@ -35,6 +35,7 @@ class BookingController extends Controller
         $booking->user_id = Auth::user()->id;
         $booking->car_id = $r->get('car_id');
         // $booking->privatecar_id = '9';
+        $booking->remarks = 'pending';
         
         $booking->save();
 
