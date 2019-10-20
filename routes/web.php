@@ -68,6 +68,8 @@ Route::get('/user/booking/detail','BookingController@view')->middleware('auth');
 Route::get('/admin/booking/detail','BookingController@view_bookings');
 Route::get('/admin/view/users','UserController@view_users');
 
+Route::get('/user/viewprivatecars','PrivateCarController@viewcar')->name('user.viewprivatecar');
+
 
 
 Auth::routes();
