@@ -9,8 +9,8 @@ use Session;
 class ForumController extends Controller
 {
       public function forum(){
-        
-        return view('user/forum');
+         $comments = \App\Forum::orderBy('created_at','DESC')->get();
+        return view('user/forum',compact('comments'));
     }
 
     public function comment(Request $r){

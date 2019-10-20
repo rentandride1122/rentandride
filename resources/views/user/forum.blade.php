@@ -41,6 +41,33 @@
           @endif
           <h3>Comments</h3>
           <hr>
+
+          @foreach($comments as $key)
+                    <div class="car-list-content">
+                        <div class="single-car-wrap">
+                            <div class="row">
+                        <div class="col-lg-1">
+                        </div>
+                        <div class="col-lg-11">
+                            <div class="display-table">
+                                <div class="display-table-cell">
+                                    <div class="car-list-info">
+                                        <p><b>By: {{ $key->user['email'] }}</b></p>
+                                        <p>{{ $key['comment'] }}</p>
+                                        @if(Auth::user()->email == $key->user['email'])
+                                        <a href="#">Edit</a>
+                                        <a href="#">Delete</a>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                     
+                    @endforeach
                     <br>
                     <form method="POST" action="{{ url('user/comment') }}">
                     	<textarea name="comment" style="width: 600px;height: 200px;border: 2px solid #a9c6c9;"></textarea>
