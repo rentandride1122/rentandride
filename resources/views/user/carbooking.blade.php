@@ -13,47 +13,18 @@
                         <div class="book-a-car">
 
                             <form action="{{ url('client/bookcar') }}" method="POST">
-                                <!--== Pick Up Location ==-->
-                                <div class="pickup-location book-item">
-                                    <h4>Current Location</h4>
-                                    <input type="text" name="current_location" required="">
-                                    <!-- <select class="custom-select">
-                                      <option selected>Select</option>
-                                      <option value="1">Dhaka</option>
-                                      <option value="2">Comilla</option>
-                                      <option value="3">Barishal</option>
-                                      <option value="3">Rangpur</option>
-                                    </select> -->
-                                </div>
-                                <!--== Pick Up Location ==-->
-                                <div class="pickup-location book-item">
-                                    <h4>Destination</h4>
-                                    <input type="text" name="destination" required="">
-                                    <!-- <select class="custom-select">
-                                      <option selected>Select</option>
-                                      <option value="1">Dhaka</option>
-                                      <option value="2">Comilla</option>
-                                      <option value="3">Barishal</option>
-                                      <option value="3">Rangpur</option>
-                                    </select> -->
-                                </div>
-
-                                <div class="pickup-location book-item">
-                                    <h4>Days</h4>
-                                    <input type="number" name="days" required="">
-                                   
-                                </div>
+                                                               
 
                                 <!--== Pick Up Date ==-->
-                               <!--  <div class="pick-up-date book-item">
+                                <div class="pick-up-date book-item">
                                     <h4>PICK-UP DATE:</h4>
-                                    <input id="startDate" placeholder="Pick Up Date" />
+                                    <input id="startDate" name="booking_from" placeholder="Pick Up Date" />
 
                                     <div class="return-car">
                                         <h4>Return DATE:</h4>
-                                        <input id="endDate" placeholder="Return Date" />
+                                        <input id="endDate" name="booking_to" placeholder="Return Date" />
                                     </div>
-                                </div> -->
+                                </div>
                                 <!--== Pick Up Location ==-->
 
                                 <!--== Car Choose ==-->

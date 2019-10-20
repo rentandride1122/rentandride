@@ -30,9 +30,8 @@ class BookingController extends Controller
 
     	
         $booking = new Booking;
-        $booking->current_location = $r->get('current_location');
-        $booking->destination = $r->get('destination');
-        $booking->days = $r->get('days');
+        $booking->booking_from = $r->get('booking_from');
+        $booking->booking_to = $r->get('booking_to');
         $booking->user_id = Auth::user()->id;
         $booking->car_id = $r->get('car_id');
         // $booking->privatecar_id = '9';
