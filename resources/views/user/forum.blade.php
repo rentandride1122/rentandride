@@ -56,8 +56,14 @@
                                         <p>{{ $key['comment'] }}</p>
                                         @if(Auth::user()->email == $key->user['email'])
                                         <a href="#">Edit</a>
-                                        <a href="#">Delete</a>
-                                        @endif
+ 
+                     <form action = "{{ url('/user/deletemessage') }}" method = 'POST'>
+                      <input type = 'hidden' name = 'id' value = "{{ $key['id'] }}" />
+                      <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
+                      <input type = 'hidden' name = '_method' value = 'DELETE' />
+                     <button style="height: 22px" class="btn btn-danger btn-xs fa fa-trash-o"></button>
+                      </form>                              
+                                @endif
                                     </div>
                                 </div>
                             </div>
