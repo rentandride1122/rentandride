@@ -50,11 +50,18 @@ Route::get('/user/logout','UserController@logout')->name('user.logout');
 
 Route::get('/user/viewcars','UserCarController@viewcar')->name('user.viewcar');
 Route::get('/user/yourcar','UserCarController@viewyourcar')->name('user.viewyourcar');
+Route::get('/user/yourcar/view/{id}','UserCarController@yourcardesc')->name('user.yourcardesc');
+Route::get('/user/update/yourcar/{id}','UserCarController@updateyourcar')->name('user.updateyourcar');
+Route::delete('/user/delete/yourcar','UserCarController@deleteyourcar')->name('user.deleteyourcar');
 
 //testing privatecar
 
 Route::get('/user/createcar','UserCarController@insert')->name('user.insert.car')->middleware('auth');
 Route::post('/user/createcar','UserCarController@store')->name('user.store.car')->middleware('auth');
+
+
+Route::get('/client/bookcar/{id}','BookingController@insert')->middleware('auth');
+Route::post('/client/bookcar','BookingController@store')->middleware('auth');
 
 
 

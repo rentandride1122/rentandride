@@ -87,4 +87,24 @@ class UserCarController extends Controller
 
         return view('user.yourcar',compact('cars'));
     }
+
+    public function yourcardesc($id){
+        $car = PrivateCar::find($id);
+
+        return view('user.yourfullcar',compact('car'));
+
+    }
+    public function updateyourcar($id){
+        $car = PrivateCar::find($id);
+        return view('user/edityourcar',compact('car'));
+    }
+
+    public function deleteyourcar(Request $r){
+         $id = $r->get('id');
+        $car = \App\PrivateCar::find($id);
+        
+
+    $car->delete();    
+    return redirect('/user/yourcar')->with('msg','Car deleted');
+    }
 }
