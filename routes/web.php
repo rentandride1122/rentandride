@@ -65,6 +65,7 @@ Route::post('/client/bookcar','BookingController@store')->middleware('auth');
 
 Route::post('/user/comment','ForumController@comment');
 Route::get('/user/forum','ForumController@forum');
+Route::delete('/user/deletemessage','ForumController@deletemessage');
 
 
 Auth::routes();

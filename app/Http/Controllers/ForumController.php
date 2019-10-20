@@ -26,5 +26,14 @@ class ForumController extends Controller
         return redirect('user/forum')->with('msg','Message successfully sent');
     }
 
+public function deletemessage(Request $r)
+{
+    $id = $r->get('id');
+    $forum = \App\Forum::find($id);
+ 
+    $forum->delete();    
+    return redirect('/user/forum')->with('msg','Car Detail deleted');
+ 
+}
     
 }
