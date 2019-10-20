@@ -23,7 +23,7 @@ class ForumController extends Controller
         $forum->user_id = Auth::user()->id;
         $forum->save();
 
-        return redirect('user/forum')->with('msg','Message successfully sent');
+        return redirect('user/forum');
     }
 
 public function deletemessage(Request $r)
@@ -35,5 +35,24 @@ public function deletemessage(Request $r)
     return redirect('/user/forum')->with('msg','Car Detail deleted');
  
 }
+    public function updatecar(Request $r)
+    {
+        $validations = array(
+            'name' => 'required'
+           
+        );
+            $r->validate($validations);
+            $id = $r->get('id');
+           
+            $forum = \App\Forum::find($id);
+            
+
+        $forum->message = $r->get('message');
+        $forum->save();
+
+        return redirect('user/forum')->with('msg','Updated successfully');
+
+    }
+
     
 }

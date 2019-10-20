@@ -58,10 +58,10 @@
                                         <a href="#">Edit</a>
  
                      <form action = "{{ url('/user/deletemessage') }}" method = 'POST'>
-                      <input type = 'hidden' name = 'id' value = "{{ $key['id'] }}" />
-                      <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
-                      <input type = 'hidden' name = '_method' value = 'DELETE' />
-                     <button style="height: 22px" class="btn btn-danger btn-xs fa fa-trash-o"></button>
+                        <input type = 'hidden' name = 'id' value = "{{ $key['id'] }}" />
+                         <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
+                         <input type = 'hidden' name = '_method' value = 'DELETE' />
+                     <button style="height: 26px; float: right" class="btn btn-danger btn-xs fa fa-trash-o"></button>
                       </form>                              
                                 @endif
                                     </div>

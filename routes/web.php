@@ -67,6 +67,8 @@ Route::get('/user/booking/detail','BookingController@view')->middleware('auth');
 Route::post('/user/comment','ForumController@comment');
 Route::get('/user/forum','ForumController@forum');
 Route::delete('/user/deletemessage','ForumController@deletemessage');
+Route::get('/user/updatemessage/{id}','ForumController@updatemessage')->name('user.updateyourcar');
+
 
 Route::get('/admin/booking/detail','BookingController@view_bookings');
 Route::get('/admin/view/users','UserController@view_users');
