@@ -56,14 +56,14 @@ class BookingController extends Controller
         
         $booking->save();
 
-        return redirect('/user/index')->with('msg','Car added successfully');
+        return redirect('/user/index')->with('msg','Your request has been sent');
 
     }
 
     public function view(){
     	$booking = Booking::where('user_id',Auth::user()->id)->get();
 
-    	return view('user/mybooking',compact('booking'));
+    	return view('user.mybooking',compact('booking'));
     }
 
     public function view_bookings(){
@@ -86,7 +86,7 @@ class BookingController extends Controller
         
         $booking->save();
 
-        return redirect('/user/booking/detail')->with('msg','Successfully changed');
+        return redirect('/user/booking/detail')->with('msg','Your request has been sent');
     }
 
     public function confirm_booking(Request $r){
@@ -104,5 +104,13 @@ class BookingController extends Controller
         $booking->save();
 
         return redirect('/admin/booking/detail')->with('msg','Booking Canceled');
+    }
+    public function user_cancel_booking(Request $r){
+        $id = $r->get('id');
+        $booking = Booking::find($id);
+        $booking->remarks = 'canceled';
+        $booking->save();
+
+        return redirect('/user/booking/detail')->with('msg','Your Booking has been Canceled');
     }
 }

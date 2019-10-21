@@ -94,10 +94,24 @@
                                                     or
                                                     <br>
 
-                                                    <a class="btn btn-danger" href="">Cancel booking</a>
+                                                    <form action = "{{ url('user/cancel/booking') }}" method = 'POST'>
+
+                                                      <input type = 'hidden' name = 'id' value = "{{ $b['id'] }}" />
+                                                      <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
+                                                      <input type = 'hidden' name = '_method' value = 'PUT' />
+                                                     <button  class="btn btn-danger">Cancel Booking</button>
+                                                      </form>
+
+
                                                     @elseif($b['remarks'] == 'approved')
 
-                                                    <a class="btn btn-danger" href="">Cancel booking</a>
+                                                    <form action = "{{ url('user/cancel/booking') }}" method = 'POST'>
+
+                                                      <input type = 'hidden' name = 'id' value = "{{ $b['id'] }}" />
+                                                      <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
+                                                      <input type = 'hidden' name = '_method' value = 'PUT' />
+                                                     <button  class="btn btn-danger">Cancel Booking</button>
+                                                      </form>
 
                                                     @else
 
@@ -152,11 +166,23 @@
                                                     or
                                                     <br>
 
-                                                    <a class="btn btn-danger" href="">Cancel booking</a>
+                                                    <form action = "{{ url('user/cancel/booking') }}" method = 'POST'>
+
+                                                      <input type = 'hidden' name = 'id' value = "{{ $b['id'] }}" />
+                                                      <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
+                                                      <input type = 'hidden' name = '_method' value = 'PUT' />
+                                                     <button  class="btn btn-danger">Cancel Booking</button>
+                                                      </form>
+                                                      
                                                     @elseif($b['remarks'] == 'approved')
 
-                                                    <a class="btn btn-danger" href="">Cancel booking</a>
+                                                   <form action = "{{ url('user/cancel/booking') }}" method = 'POST'>
 
+                                                      <input type = 'hidden' name = 'id' value = "{{ $b['id'] }}" />
+                                                      <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
+                                                      <input type = 'hidden' name = '_method' value = 'PUT' />
+                                                     <button  class="btn btn-danger">Cancel Booking</button>
+                                                      </form>
                                                     @else
 
 
