@@ -75,6 +75,9 @@ Route::get('/admin/view/users','UserController@view_users');
 
 Route::get('/user/viewprivatecars','PrivateCarController@viewcar')->name('user.viewprivatecar');
 
+Route::get('/user/update/booking/{id}','BookingController@update_user_booking');
+Route::put('/user/edit/booking','BookingController@edit_user_booking');
+
 
 
 Auth::routes();

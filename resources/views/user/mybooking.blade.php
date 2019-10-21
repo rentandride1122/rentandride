@@ -86,7 +86,7 @@
                                                     ----------------------------
                                                     <br>
 
-                                                    <a href="{{ url('user/update/yourcar/'.$b['id']) }}" class="btn btn-success">Change date</a><br>
+                                                    <a href="{{ url('user/update/booking/'.$b['id']) }}" class="btn btn-success">Change date</a><br>
                                                     or
                                                     <br>
 

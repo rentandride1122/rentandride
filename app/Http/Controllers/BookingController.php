@@ -53,4 +53,21 @@ class BookingController extends Controller
     	
     	return view('admin/viewbookings',compact('bookings'));
     }
+
+    public function update_user_booking($id){
+        $booking = Booking::find($id);
+        return view('user/editbooking',compact('booking'));
+    }
+    public function edit_user_booking(Request $r){
+        $id = $r->get('id');
+        $booking = Booking::find($id);
+        $booking->booking_from = $r->get('booking_from');
+        $booking->booking_to = $r->get('booking_to');
+        
+        $booking->remarks = 'pending';
+        
+        $booking->save();
+
+        return redirect('/user/booking/detail')->with('msg','Successfully changed');
+    }
 }
