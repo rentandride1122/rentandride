@@ -55,7 +55,7 @@
                                                 <h5 class="rating" style="color:    ;margin-top: -15px">
                                                     Rs. {{ $c['price'] }}/ per day
                                                 </h5>
-                                                <a href="{{ url('client/bookcar/'.$c['id']) }}" class="rent-btn">Book It</a>
+                                                <a href="{{ url('client/bookprivatecar/'.$c['id']) }}" class="rent-btn">Book It</a>
                                             </div>
                                         </div>
                                     </div>
