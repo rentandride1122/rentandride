@@ -84,11 +84,11 @@
                       <button class="btn btn-warning">Canceled</button>
 
                       @else
-                      <form action = "{{ url('admin/deletecar') }}" method = 'POST'>
+                      <form action = "{{ url('admin/cancel/booking') }}" method = 'POST'>
 
                       <input type = 'hidden' name = 'id' value = "{{ $b['id'] }}" />
                       <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
-                      <input type = 'hidden' name = '_method' value = 'DELETE' />
+                      <input type = 'hidden' name = '_method' value = 'PUT' />
                      <button  class="btn btn-danger">Cancel</button>
                       </form>
                       @endif
