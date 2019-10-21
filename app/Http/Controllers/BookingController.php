@@ -79,4 +79,12 @@ class BookingController extends Controller
 
         return redirect('/admin/booking/detail')->with('msg','Booking Approved');
     }
+    public function cancel_booking(Request $r){
+        $id = $r->get('id');
+        $booking = Booking::find($id);
+        $booking->remarks = 'canceled';
+        $booking->save();
+
+        return redirect('/admin/booking/detail')->with('msg','Booking Canceled');
+    }
 }
