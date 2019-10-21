@@ -49,10 +49,10 @@ Route::get('/user/update','UserController@update')->middleware('auth');
 Route::get('/user/logout','UserController@logout')->name('user.logout');
 
 Route::get('/user/viewcars','UserCarController@viewcar')->name('user.viewcar');
-Route::get('/user/yourcar','UserCarController@viewyourcar')->name('user.viewyourcar');
-Route::get('/user/yourcar/view/{id}','UserCarController@yourcardesc')->name('user.yourcardesc');
-Route::get('/user/update/yourcar/{id}','UserCarController@updateyourcar')->name('user.updateyourcar');
-Route::delete('/user/delete/yourcar','UserCarController@deleteyourcar')->name('user.deleteyourcar');
+Route::get('/user/yourcar','UserCarController@viewyourcar')->name('user.viewyourcar')->middleware('auth');
+Route::get('/user/yourcar/view/{id}','UserCarController@yourcardesc')->name('user.yourcardesc')->middleware('auth');
+Route::get('/user/update/yourcar/{id}','UserCarController@updateyourcar')->name('user.updateyourcar')->middleware('auth');
+Route::delete('/user/delete/yourcar','UserCarController@deleteyourcar')->name('user.deleteyourcar')->middleware('auth');
 
 //testing privatecar
 
