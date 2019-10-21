@@ -61,11 +61,37 @@
                   
 
                     <td>
-                      <a href="">Approve</a>
+                      <!-- <a href="{{ url('admin/confirm/booking/'.$b['id']) }}">Approve</a> -->
+
+                      @if($b['remarks'] == 'pending')
+                       <form action = "{{ url('admin/confirm/booking') }}" method = 'POST'>
+
+                      <input type = 'hidden' name = 'id' value = "{{ $b['id'] }}" />
+                      <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
+                      <input type = 'hidden' name = '_method' value = 'PUT' />
+                     <button  class="btn btn-success">Approve</button>
+                      </form>
+                      @elseif($b['remarks'] == 'canceled')
+
+                      @else
+                       <button class="btn btn-info">Approved</button>
+                      @endif
 
                     </td>
                     <td>
-                      <a href="">Cancel</a>
+                      @if($b['remarks'] == 'canceled')
+
+                      <button class="btn btn-warning">Canceled</button>
+
+                      @else
+                      <form action = "{{ url('admin/deletecar') }}" method = 'POST'>
+
+                      <input type = 'hidden' name = 'id' value = "{{ $b['id'] }}" />
+                      <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
+                      <input type = 'hidden' name = '_method' value = 'DELETE' />
+                     <button  class="btn btn-danger">Cancel</button>
+                      </form>
+                      @endif
 
                     </td>
 
