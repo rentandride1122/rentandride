@@ -10,10 +10,21 @@ use \App\Car;
 class BookingController extends Controller
 {
     public function insert($id){
+        $book = Booking::where('user_id', Auth::user()->id)->first();
+        
+        if($book){
+            return redirect('user/viewcars')->with('msg','Sorry, You cannot book more than one car at a time');
+        }
+
     	$car_id = $id;
     	return view('user.carbooking',compact('car_id'));
     }
     public function insertprivate($id){
+        $book = Booking::where('user_id', Auth::user()->id)->first();
+        
+        if($book){
+            return redirect('user/viewprivatecars')->with('msg','Sorry, You cannot book more than one car at a time');
+        }
         $privatecar_id = $id;
         return view('user.privatecarbooking',compact('privatecar_id'));
     }
@@ -32,6 +43,8 @@ class BookingController extends Controller
 
     //$r->validate($validation);
 
+        
+       
     	
         $booking = new Booking;
         $booking->booking_from = $r->get('booking_from');
