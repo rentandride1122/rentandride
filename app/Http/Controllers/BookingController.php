@@ -13,6 +13,10 @@ class BookingController extends Controller
     	$car_id = $id;
     	return view('user.carbooking',compact('car_id'));
     }
+    public function insertprivate($id){
+        $privatecar_id = $id;
+        return view('user.privatecarbooking',compact('privatecar_id'));
+    }
 
      public function store(Request $r)
     {
@@ -34,7 +38,7 @@ class BookingController extends Controller
         $booking->booking_to = $r->get('booking_to');
         $booking->user_id = Auth::user()->id;
         $booking->car_id = $r->get('car_id');
-        // $booking->privatecar_id = '9';
+        $booking->privatecar_id = $r->get('privatecar_id');
         $booking->remarks = 'pending';
         
         $booking->save();
@@ -42,6 +46,7 @@ class BookingController extends Controller
         return redirect('/user/index')->with('msg','Car added successfully');
 
     }
+
     public function view(){
     	$booking = Booking::where('user_id',Auth::user()->id)->get();
 
@@ -55,7 +60,7 @@ class BookingController extends Controller
     }
 
     public function update_user_booking($id){
-        $booking = Booking::find($id);
+        $booking = Booking::findorFail($id);
         return view('user/editbooking',compact('booking'));
     }
     public function edit_user_booking(Request $r){

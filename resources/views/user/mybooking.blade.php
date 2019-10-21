@@ -64,7 +64,7 @@
                                                       <img style="height: 300px" src="{{ URL::to('/').'/uploads/'.$b->car['image'] }}" alt="JSOFT">
                                                    </a>
                                                 </div>
-                                                <h5 align="right">{{ $b['remarks'] }}</h5>
+                                                <h5 align="right" style="color:red">{{ $b['remarks'] }}</h5>
                                                  <h5 align="right">{{ $b['created_at'] }}</h5>
 
                                                 <div class="p-car-content">
@@ -86,11 +86,22 @@
                                                     ----------------------------
                                                     <br>
 
+
+                                                    @if($b['remarks'] == 'pending')
                                                     <a href="{{ url('user/update/booking/'.$b['id']) }}" class="btn btn-success">Change date</a><br>
                                                     or
                                                     <br>
 
                                                     <a class="btn btn-danger" href="">Cancel booking</a>
+                                                    @elseif($b['remarks'] == 'approved')
+
+                                                    <a class="btn btn-danger" href="">Cancel booking</a>
+
+                                                    @else
+
+
+                                                    @endif
+
                                                     
                                                    
                                                     
