@@ -56,6 +56,8 @@
                                     <div class="row popular-car-gird">
 
                                         @foreach($booking as $b)
+
+                                        @if($b['privatecar_id'] == null)
                                         <!-- Single Popular Car Start -->
                                         <div class="col-lg-4 col-md-6 con suv mpv" >
                                             <div class="single-popular-car">
@@ -111,6 +113,66 @@
                                             </div>
                                         </div>
                                         <!-- Single Popular Car End -->
+
+                                        @elseif($b['car_id'] == null)
+
+                                        <!-- Single Popular Car Start -->
+                                        <div class="col-lg-4 col-md-6 con suv mpv" >
+                                            <div class="single-popular-car">
+                                                <div class="p-car-thumbnails">
+                                                    <a class="car-hover" href="{{ URL::to('/').'/uploads/'.$b->privatecar['image'] }}">
+                                                      <img style="height: 300px" src="{{ URL::to('/').'/uploads/'.$b->privatecar['image'] }}" alt="JSOFT">
+                                                   </a>
+                                                </div>
+                                                <h5 align="right" style="color:red">{{ $b['remarks'] }}</h5>
+                                                 <h5 align="right">{{ $b['created_at'] }}</h5>
+
+                                                <div class="p-car-content">
+                                                    <h3>
+                                                        <a href="#">Car name: {{ $b->privatecar['car_name'] }}</a>
+                                                        
+                                                    </h3>
+                                                    <h5> Model: {{ $b->privatecar['car_model'] }}</h5>
+                                                    <h5> Price: Rs. {{ $b->privatecar['price'] }}</h5>
+                                                    <h5> Capacity: {{ $b->privatecar['capacity'] }}</h5>
+                                                    <h5> Fuel Type: {{ $b->privatecar['fuel_type'] }}</h5>
+                                                    <h5> AC: {{ $b->privatecar['aircondition'] }}</h5>
+                                                    
+                                                    ----------------------------
+
+                                                    <h5>Start Date: {{ $b['booking_from'] }}</h5>
+                                                    <h5>Return Date: {{ $b['booking_to'] }}</h5>
+
+                                                    ----------------------------
+                                                    <br>
+
+
+                                                    @if($b['remarks'] == 'pending')
+                                                    <a href="{{ url('user/update/booking/'.$b['id']) }}" class="btn btn-success">Change date</a><br>
+                                                    or
+                                                    <br>
+
+                                                    <a class="btn btn-danger" href="">Cancel booking</a>
+                                                    @elseif($b['remarks'] == 'approved')
+
+                                                    <a class="btn btn-danger" href="">Cancel booking</a>
+
+                                                    @else
+
+
+                                                    @endif
+
+                                                    
+                                                   
+                                                    
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <!-- Single Popular Car End -->
+
+                                        @endif
 
                                       @endforeach   
                                         
