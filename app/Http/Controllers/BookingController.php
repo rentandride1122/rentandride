@@ -70,4 +70,13 @@ class BookingController extends Controller
 
         return redirect('/user/booking/detail')->with('msg','Successfully changed');
     }
+
+    public function confirm_booking(Request $r){
+        $id = $r->get('id');
+        $booking = Booking::find($id);
+        $booking->remarks = 'approved';
+        $booking->save();
+
+        return redirect('/admin/booking/detail')->with('msg','Booking Approved');
+    }
 }
