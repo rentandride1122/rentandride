@@ -84,6 +84,8 @@ Route::put('/admin/confirm/booking/','BookingController@confirm_booking');
 Route::put('/admin/confirm/privatecar/','BookingController@confirm_privatecar');
 Route::delete('/admin/delete/privatecar/','BookingController@delete_privatecar');
 
+Route::put('/user/edit/yourcar/','UserCarController@edityourcar')->name('user.edityourcar');
+
 
 
 Auth::routes();

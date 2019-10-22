@@ -67,8 +67,8 @@
 						    <label class="control-label col-sm-2">Fuel Type:</label>
 						    <div class="col-sm-10">
 						      <select name="fuel_type" class="form-control">
-						      	<option>petrol</option>
-						      	<option>diseal</option>
+						      	<option value="petrol">petrol</option>
+						      	<option value="diseal">diseal</option>
 						      </select>
 						    </div>
 						  </div>
