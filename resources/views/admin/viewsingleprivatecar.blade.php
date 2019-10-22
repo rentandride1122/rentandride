@@ -55,8 +55,46 @@
 
 
                      <br>
-                     <a href="#" class="btn btn-primary" style="margin-left: 10px">Post</a>
-                     <a href="#" class="btn btn-danger" style="margin-left: 10px">Delete</a>
+
+                     @if($car['remarks'] == 'pending')
+                     
+                     <form action = "{{ url('admin/confirm/privatecar') }}" method = 'POST'>
+
+                      <input type = 'hidden' name = 'id' value = "{{ $car['id'] }}" />
+                      <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
+                      <input type = 'hidden' name = '_method' value = 'PUT' />
+                     <button  class="btn btn-primary">Approve</button>
+                      </form>
+                      or<br>
+
+
+                     <form action = "{{ url('admin/confirm/privatecar') }}" method = 'POST'>
+
+                      <input type = 'hidden' name = 'id' value = "{{ $car['id'] }}" />
+                      <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
+                      <input type = 'hidden' name = '_method' value = 'PUT' />
+                     <button  class="btn btn-danger">Delete</button>
+                      </form>
+
+                      @else
+                      
+                     <button  class="btn btn-warning">Approved</button>
+                     
+                      <br>or<br>
+
+
+                     <form action = "{{ url('admin/confirm/privatecar') }}" method = 'POST'>
+
+                      <input type = 'hidden' name = 'id' value = "{{ $car['id'] }}" />
+                      <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
+                      <input type = 'hidden' name = '_method' value = 'PUT' />
+                     <button  class="btn btn-danger">Delete</button>
+                      </form>
+                      @endif
+
+
+
+
                      
                 
             </div>
