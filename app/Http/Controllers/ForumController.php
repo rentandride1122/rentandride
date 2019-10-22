@@ -9,7 +9,7 @@ use Session;
 class ForumController extends Controller
 {
       public function forum(){
-         $comments = \App\Forum::orderBy('created_at','DESC')->get();
+         $comments = \App\Forum::orderBy('created_at','DESC')->paginate(10);
         return view('user/forum',compact('comments'));
     }
 
@@ -32,27 +32,30 @@ public function deletemessage(Request $r)
     $forum = \App\Forum::find($id);
  
     $forum->delete();    
-    return redirect('/user/forum')->with('msg','Car Detail deleted');
+    return redirect('/user/forum')->with('msg','Message deleted');
  
 }
-    public function updatecar(Request $r)
-    {
-        $validations = array(
-            'name' => 'required'
-           
-        );
-            $r->validate($validations);
-            $id = $r->get('id');
-           
+ public function editmessage($id){
             $forum = \App\Forum::find($id);
-            
 
-        $forum->message = $r->get('message');
+        return view('/user/updatemessage',compact('forum'));
+    }
+
+      public function updatemessage(Request $r)
+    {
+            $id = $r->get('id');
+
+            $forum = \App\Forum::find($id);
+        
+
+        $forum->comment = $r->get('comment');
+        
         $forum->save();
 
-        return redirect('user/forum')->with('msg','Updated successfully');
+        return redirect('/user/forum')->with('msg','Updated successfully');
 
     }
+
 
     
 }

@@ -25,7 +25,7 @@
             <div class="row">
                 <!-- Car List Content Start -->
                 <div class="col-lg-8">
-                     @if(\Session::has('msg'))
+                	 @if(\Session::has('msg'))
           <div class = 'alert alert-success'>
             <p>{{ \Session::get('msg') }}</p>
           </div></br>
@@ -39,54 +39,18 @@
             </ul>
           </div>
           @endif
- <h3>Place your Comments</h3>
- <br>
-            <form method="POST" action="{{ url('user/comment') }}">
-                        <textarea name="comment" style="width: 600px;height: 200px;border: 2px solid #a9c6c9;"></textarea>
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="submit" class="btn btn-primary" value="Send">
-                    </form>
-                    <br>
-          <h3>User's Views</h3>
+          <h3>Comments</h3>
           <hr>
 
-          @foreach($comments as $key)
-
-                    <div class="car-list-content">
-                        <div class="single-car-wrap">
-                            <div class="row">
-                        <div class="col-lg-1">
-                        </div>
-                        <div class="col-lg-11">
-                            <div class="display-table">
-                                <div class="display-table-cell">
-                                    <div class="car-list-info">
-                                        <p><b>By: {{ $key->user['email'] }}</b></p>
-                                        <p>{{ $key['comment'] }}</p>
-                                        @if(Auth::user()->email == $key->user['email'])
-                                                                        <a href="{{ url('/user/updatemessage/'.$key['id']) }}">Edit</a>
-
- 
-                     <form action = "{{ url('/user/deletemessage') }}" method = 'POST'>
-                        <input type = 'hidden' name = 'id' value = "{{ $key['id'] }}" />
-                         <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
-                         <input type = 'hidden' name = '_method' value = 'DELETE' />
-                     <button style="height: 26px; float: right; margin-bottom: 12px;" class="btn btn-danger btn-xs fa fa-trash-o"></button>
-                      </form>                              
-                                @endif
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                            </div>
-                        </div>
-                    </div>
+        
                     <br>
-                     
-                    @endforeach
-                    
-                    <br>
-                  
+                    <form method="POST" action="{{ url('user/updatemessage') }}">
+                    	<textarea name="comment" style="width: 600px;height: 200px;border: 2px solid #a9c6c9;">{{ $forum['comment'] }}</textarea>
+                    	<input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                          <input type = 'hidden' name = '_method' value = "PUT" />
+                                          <input type = 'hidden' name = 'id' value = "{{ $forum['id'] }}"/>
+                    	<input type="submit" class="btn btn-primary" value="Update">
+                    </form>
 
 
                     <!-- Page Pagination Start -->
