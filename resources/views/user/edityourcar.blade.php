@@ -38,7 +38,7 @@
           </div>
           @endif
                     
-                    	<form action="{{ url('user/yourcar') }}" method="POST" enctype="multipart/form-data">
+                    	<form action="{{ url('user/edit/yourcar') }}" method="POST" enctype="multipart/form-data">
 						  <div class="form-group">
 						    <label class="control-label col-sm-2">Car Name:</label>
 						    <div class="col-sm-10">
@@ -76,8 +76,8 @@
 						    <label class="control-label col-sm-2">Air Condition:</label>
 						    <div class="col-sm-10">
 						       <div class="form-control">
-			                     <input type="radio" name="aircondition" value="yes" @if(old('aircondition',$car['aircondition']) == 'yes') checked="" @endif>Yes
-			                     <input type="radio" name="aircondition" value="no" checked="" @if(old('aircondition',$car['aircondition']) == 'no') checked="" @endif>No
+			                      <input type="radio" name="aircondition" value="yes" @if(old('aircondition',$car['aircondition']) == 'yes') checked="" @endif>Yes
+                     <input type="radio" name="aircondition" value="no" @if(old('aircondition',$car['aircondition']) == 'no') checked="" @endif>No
                      			</div>
 						    </div>
 						  </div>
@@ -92,11 +92,12 @@
 
 			                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
 			                  <input type="hidden" name="_method" value="PUT">
+			                   <input type="hidden" name="id" value="{{ $car['id'] }}">
                   			 
 
 						<div class="form-group">
 						    <div class="col-sm-offset-2 col-sm-10">
-						      <input type="submit" class="btn btn-primary" value="Edit">
+						      <input type="submit" class="btn btn-primary" value="Change">
 						    </div>
 						</div>
 						</form>

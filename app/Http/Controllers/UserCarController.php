@@ -107,4 +107,33 @@ class UserCarController extends Controller
     $car->delete();    
     return redirect('/user/yourcar')->with('msg','Car deleted');
     }
+
+    public function edityourcar(Request $r){
+        // $validations = array(
+        //     'name' => 'required',
+        //     'model' => 'required',
+        //     'price' => 'required|integer',
+        //     'capacity' => 'required|integer',
+        //     'description' => 'required',
+        //     'image' => 'mimes:jpeg,bmp,png,gif|max:3500'
+        // );
+        //     $r->validate($validations);
+            $id = $r->get('id');
+           
+
+            $car = \App\PrivateCar::find($id);
+            
+           
+
+        $car->car_name = $r->get('car_name');
+        $car->car_model = $r->get('car_model');
+        $car->price = $r->get('price');
+        $car->car_description = $r->get('car_description');
+        $car->capacity = $r->get('capacity');
+        $car->fuel_type = $r->get('fuel_type');
+        $car->aircondition = $r->get('aircondition');
+        $car->save();
+
+        return redirect('/user/yourcar')->with('msg','Changes made');
+    }
 }
