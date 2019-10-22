@@ -7,6 +7,7 @@ use Auth;
 use \App\Booking;
 use \App\PrivateCar;
 use \App\Car;
+use File;
 
 class BookingController extends Controller
 {
@@ -97,4 +98,27 @@ class BookingController extends Controller
 
         return redirect('/admin/viewprivatecar')->with('msg','CAr Approved');
     }
+
+    public function delete_privatecar(Request $r)
+{
+    $id = $r->get('id');
+    $car = \App\PrivateCar::find($id);
+        $image_path = public_path()."/uploads/".$car['image'];
+        if(File::exists($image_path)) {
+        File::delete($image_path);
+        }
+
+        $billbook_path = public_path()."/uploads/".$car['billbook'];
+        if(File::exists($billbook_path)) {
+        File::delete($billbook_path);
+        }
+        $citizenship_path = public_path()."/uploads/".$car['citizenship'];
+        if(File::exists($citizenship_path)) {
+        File::delete($citizenship_path);
+        }
+
+    $car->delete();    
+    return redirect('/admin/viewprivatecar')->with('msg','Car deleted');
+ 
+}
 }

@@ -68,11 +68,11 @@
                       or<br>
 
 
-                     <form action = "{{ url('admin/confirm/privatecar') }}" method = 'POST'>
+                     <form action = "{{ url('admin/delete/privatecar') }}" method = 'POST'>
 
                       <input type = 'hidden' name = 'id' value = "{{ $car['id'] }}" />
                       <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
-                      <input type = 'hidden' name = '_method' value = 'PUT' />
+                      <input type = 'hidden' name = '_method' value = 'DELETE' />
                      <button  class="btn btn-danger">Delete</button>
                       </form>
 
@@ -83,11 +83,11 @@
                       <br>or<br>
 
 
-                     <form action = "{{ url('admin/confirm/privatecar') }}" method = 'POST'>
+                     <form action = "{{ url('admin/delete/privatecar') }}" method = 'POST'>
 
                       <input type = 'hidden' name = 'id' value = "{{ $car['id'] }}" />
                       <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
-                      <input type = 'hidden' name = '_method' value = 'PUT' />
+                      <input type = 'hidden' name = '_method' value = 'DELETE' />
                      <button  class="btn btn-danger">Delete</button>
                       </form>
                       @endif
