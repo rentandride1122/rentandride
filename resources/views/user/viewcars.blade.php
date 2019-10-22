@@ -1,25 +1,9 @@
 @include('user.includes.header')
 
-    <!--== Page Title Area Start ==-->
-    <section id="page-title-area" class="section-padding overlay">
-        <div class="container">
-            <div class="row">
-                <!-- Page Title Start -->
-                <div class="col-lg-12">
-                    <div class="section-title  text-center">
-                        <h2>Our Cars</h2>
-                        <span class="title-line"><i class="fa fa-car"></i></span>
-                        <p>Book a car to enjoy your ride</p>
-                    </div>
-                </div>
-                <!-- Page Title End -->
-            </div>
-        </div>
-    </section>
-    <!--== Page Title Area End ==-->
+    
 
     <!--== Car List Area Start ==-->
-    <section id="car-list-area" class="section-padding">
+    <section id="car-list-area" class="section-padding" style="margin-top: 70px">
         <div class="container">
             <div class="row">
                 <!-- Car List Content Start -->

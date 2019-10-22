@@ -1,24 +1,9 @@
 @include('user.includes.header')
-<section id="page-title-area" class="section-padding overlay">
-        <div class="container">
-            <div class="row">
-                <!-- Page Title Start -->
-                <div class="col-lg-12">
-                    <div class="section-title  text-center">
-                        <h2>My Booking</h2>
-                        <span class="title-line"><i class="fa fa-car"></i></span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    </div>
-                </div>
-                <!-- Page Title End -->
-            </div>
-        </div>
-    </section>
-    <!--== Page Title Area End ==-->
+
 
 
     <!--== Choose Car Area Start ==-->
-    <section id="choose-car" class="section-padding">
+    <section id="choose-car" class="section-padding" style="margin-top: 70px">
 
         <div class="container">
              @if(\Session::has('msg'))
@@ -56,6 +41,7 @@
                                     <div class="row popular-car-gird">
 
                                         @foreach($booking as $b)
+
 
                                         @if($b['privatecar_id'] == null)
                                         <!-- Single Popular Car Start -->
@@ -211,6 +197,8 @@
 
                         </div>
                         <!-- Choose Area Tab content -->
+
+                        {{ $booking->links() }}
                     </div>
                 </div>
                 <!-- Choose Area Content End -->
