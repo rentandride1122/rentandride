@@ -84,6 +84,7 @@ Route::put('/admin/cancel/booking/','BookingController@cancel_booking');
 Route::put('/admin/confirm/booking/','BookingController@confirm_booking');
 
 Route::put('/admin/confirm/privatecar/','BookingController@confirm_privatecar');
+Route::delete('/admin/delete/privatecar/','BookingController@delete_privatecar');
 
 
 
