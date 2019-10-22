@@ -49,10 +49,10 @@ Route::get('/user/update','UserController@update')->middleware('auth');
 Route::get('/user/logout','UserController@logout')->name('user.logout');
 
 Route::get('/user/viewcars','UserCarController@viewcar')->name('user.viewcar');
-Route::get('/user/yourcar','UserCarController@viewyourcar')->name('user.viewyourcar');
-Route::get('/user/yourcar/view/{id}','UserCarController@yourcardesc')->name('user.yourcardesc');
-Route::get('/user/update/yourcar/{id}','UserCarController@updateyourcar')->name('user.updateyourcar');
-Route::delete('/user/delete/yourcar','UserCarController@deleteyourcar')->name('user.deleteyourcar');
+Route::get('/user/yourcar','UserCarController@viewyourcar')->name('user.viewyourcar')->middleware('auth');
+Route::get('/user/yourcar/view/{id}','UserCarController@yourcardesc')->name('user.yourcardesc')->middleware('auth');
+Route::get('/user/update/yourcar/{id}','UserCarController@updateyourcar')->name('user.updateyourcar')->middleware('auth');
+Route::delete('/user/delete/yourcar','UserCarController@deleteyourcar')->name('user.deleteyourcar')->middleware('auth');
 
 //testing privatecar
 
@@ -61,6 +61,7 @@ Route::post('/user/createcar','UserCarController@store')->name('user.store.car')
 
 
 Route::get('/client/bookcar/{id}','BookingController@insert')->middleware('auth');
+Route::get('/client/bookprivatecar/{id}','BookingController@insertprivate')->middleware('auth');
 Route::post('/client/bookcar','BookingController@store')->middleware('auth');
 Route::get('/user/booking/detail','BookingController@view')->middleware('auth');
 
@@ -79,9 +80,11 @@ Route::get('/user/update/booking/{id}','BookingController@update_user_booking');
 Route::put('/user/edit/booking','BookingController@edit_user_booking');
 
 Route::put('/admin/cancel/booking/','BookingController@cancel_booking');
+
 Route::put('/admin/confirm/booking/','BookingController@confirm_booking');
 
 Route::put('/admin/confirm/privatecar/','BookingController@confirm_privatecar');
+
 
 
 

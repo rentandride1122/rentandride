@@ -11,8 +11,23 @@ use \App\Car;
 class BookingController extends Controller
 {
     public function insert($id){
+        $book = Booking::where('user_id', Auth::user()->id)->first();
+        
+        if($book){
+            return redirect('user/viewcars')->with('msg','Sorry, You cannot book more than one car at a time');
+        }
+
     	$car_id = $id;
     	return view('user.carbooking',compact('car_id'));
+    }
+    public function insertprivate($id){
+        $book = Booking::where('user_id', Auth::user()->id)->first();
+        
+        if($book){
+            return redirect('user/viewprivatecars')->with('msg','Sorry, You cannot book more than one car at a time');
+        }
+        $privatecar_id = $id;
+        return view('user.privatecarbooking',compact('privatecar_id'));
     }
 
      public function store(Request $r)
@@ -29,24 +44,27 @@ class BookingController extends Controller
 
     //$r->validate($validation);
 
+        
+       
     	
         $booking = new Booking;
         $booking->booking_from = $r->get('booking_from');
         $booking->booking_to = $r->get('booking_to');
         $booking->user_id = Auth::user()->id;
         $booking->car_id = $r->get('car_id');
-        // $booking->privatecar_id = '9';
+        $booking->privatecar_id = $r->get('privatecar_id');
         $booking->remarks = 'pending';
         
         $booking->save();
 
-        return redirect('/user/index')->with('msg','Car added successfully');
+        return redirect('/user/index')->with('msg','Your request has been sent');
 
     }
+
     public function view(){
     	$booking = Booking::where('user_id',Auth::user()->id)->get();
 
-    	return view('user/mybooking',compact('booking'));
+    	return view('user.mybooking',compact('booking'));
     }
 
     public function view_bookings(){
@@ -56,7 +74,7 @@ class BookingController extends Controller
     }
 
     public function update_user_booking($id){
-        $booking = Booking::find($id);
+        $booking = Booking::findorFail($id);
         return view('user/editbooking',compact('booking'));
     }
     public function edit_user_booking(Request $r){
@@ -69,7 +87,7 @@ class BookingController extends Controller
         
         $booking->save();
 
-        return redirect('/user/booking/detail')->with('msg','Successfully changed');
+        return redirect('/user/booking/detail')->with('msg','Your request has been sent');
     }
 
     public function confirm_booking(Request $r){
@@ -89,12 +107,22 @@ class BookingController extends Controller
         return redirect('/admin/booking/detail')->with('msg','Booking Canceled');
     }
 
+
     public function confirm_privatecar(Request $r){
         $id = $r->get('id');
         $privatecar = PrivateCar::find($id);
         $privatecar->remarks = 'approved';
         $privatecar->save();
 
-        return redirect('/admin/viewprivatecar')->with('msg','CAr Approved');
+        return redirect('/admin/viewprivatecar')->with('msg','Car Approved');
+
+    public function user_cancel_booking(Request $r){
+        $id = $r->get('id');
+        $booking = Booking::find($id);
+        $booking->remarks = 'canceled';
+        $booking->save();
+
+        return redirect('/user/booking/detail')->with('msg','Your Booking has been Canceled');
+
     }
 }

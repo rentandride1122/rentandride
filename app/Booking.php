@@ -13,4 +13,7 @@ class Booking extends Model
     public function car(){
     	return $this->belongsTo('\App\Car');
     }
+    public function privatecar(){
+    	return $this->belongsTo('\App\PrivateCar');
+    }
 }

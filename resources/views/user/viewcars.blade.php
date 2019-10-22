@@ -25,6 +25,20 @@
                 <!-- Car List Content Start -->
                 <div class="col-lg-8">
                     <div class="car-list-content">
+                           @if(\Session::has('msg'))
+          <div class = 'alert alert-success'>
+            <p>{{ \Session::get('msg') }}</p>
+          </div></br>
+          @endif
+          @if($errors->any())
+          <div class = 'alert alert-danger'>
+            <ul>
+              @foreach($errors->all() as $e)
+              <li>{{ $e }}</li>
+              @endforeach
+            </ul>
+          </div>
+          @endif
 
                          @foreach($cars as $c)
                         <!-- Single Car Start -->
