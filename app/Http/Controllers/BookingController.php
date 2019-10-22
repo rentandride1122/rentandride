@@ -12,7 +12,8 @@ use File;
 class BookingController extends Controller
 {
     public function insert($id){
-        $book = Booking::where('user_id', Auth::user()->id)->first();
+        $book = Booking::where([['user_id', Auth::user()->id],['remarks','!=','canceled']])->first();
+
         
         if($book){
             return redirect('user/viewcars')->with('msg','Sorry, You cannot book more than one car at a time');
@@ -63,7 +64,7 @@ class BookingController extends Controller
     }
 
     public function view(){
-    	$booking = Booking::where('user_id',Auth::user()->id)->get();
+    	$booking = Booking::where([['user_id',Auth::user()->id],['remarks','!=','canceled']])->orderBy('created_at','DESC')->paginate(6);
 
     	return view('user.mybooking',compact('booking'));
     }
@@ -116,6 +117,7 @@ class BookingController extends Controller
         $privatecar->save();
 
         return redirect('/admin/viewprivatecar')->with('msg','Car Approved');
+    }
 
     public function user_cancel_booking(Request $r){
         $id = $r->get('id');
