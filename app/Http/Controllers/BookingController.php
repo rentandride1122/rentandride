@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use \App\Booking;
+use \App\PrivateCar;
 use \App\Car;
 
 class BookingController extends Controller
@@ -86,5 +87,14 @@ class BookingController extends Controller
         $booking->save();
 
         return redirect('/admin/booking/detail')->with('msg','Booking Canceled');
+    }
+
+    public function confirm_privatecar(Request $r){
+        $id = $r->get('id');
+        $privatecar = PrivateCar::find($id);
+        $privatecar->remarks = 'approved';
+        $privatecar->save();
+
+        return redirect('/admin/viewprivatecar')->with('msg','CAr Approved');
     }
 }
