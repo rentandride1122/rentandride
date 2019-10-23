@@ -135,6 +135,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
     <!--=== Mian Js ===-->
     <script src="{{ asset('user/assets/js/main.js') }}"></script>
+    
 
 </body>
 

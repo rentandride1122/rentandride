@@ -18,11 +18,11 @@
                                 <!--== Pick Up Date ==-->
                                 <div class="pick-up-date book-item">
                                     <h4>PICK-UP DATE:</h4>
-                                    <input id="startDate" name="booking_from" placeholder="Pick Up Date" />
+                                    <input type="date" name="booking_from" placeholder="Pick Up Date" />
 
                                     <div class="return-car">
                                         <h4>Return DATE:</h4>
-                                        <input id="endDate" name="booking_to" placeholder="Return Date" />
+                                        <input type="date" name="booking_to" placeholder="Return Date" />
                                     </div>
                                 </div>
                                 <!--== Pick Up Location ==-->

@@ -91,6 +91,8 @@ Route::put('/user/edit/yourcar/','UserCarController@edityourcar')->name('user.ed
 Route::get('/user/car/fulldescription/{id}','UserCarController@fullcar')->name('user.fullcar');
 Route::get('/user/privatecar/fulldescription/{id}','UserCarController@fullprivatecar')->name('user.fullprivatecar');
 
+Route::get('/date','UserCarController@date');
+
 
 
 

@@ -23,7 +23,55 @@
             </ul>
           </div>
           @endif
- <h3>Place your Comments</h3>
+ 
+
+
+
+          
+                @if(Auth::check() == false)
+
+                <h3>Place your Comments</h3>
+ <br>
+            <form method="POST" action="{{ url('user/comment') }}">
+                        <textarea name="comment" style="width: 600px;height: 200px;border: 2px solid #a9c6c9;"></textarea>
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="submit" class="btn btn-primary" value="Send" disabled="">
+                    </form>
+                    <br>
+          <h3>User's Views</h3>
+          <hr>
+                    @foreach($comments as $key)
+
+                    <div class="car-list-content">
+                        <div class="single-car-wrap">
+                            <div class="row">
+                        <div class="col-lg-1">
+                        </div>
+                        <div class="col-lg-11">
+                            <div class="display-table">
+                                <div class="display-table-cell">
+                                    <div class="car-list-info">
+                                        <p><b>By: {{ $key->user['email'] }}</b></p>
+                                        <p>{{ $key['comment'] }}</p>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+                   
+                     
+                    @endforeach
+                    
+                    <br>
+
+                @else
+
+                <h3>Place your Comments</h3>
  <br>
             <form method="POST" action="{{ url('user/comment') }}">
                         <textarea name="comment" style="width: 600px;height: 200px;border: 2px solid #a9c6c9;"></textarea>
@@ -34,7 +82,9 @@
           <h3>User's Views</h3>
           <hr>
 
-          @foreach($comments as $key)
+                @foreach($comments as $key)
+
+                
 
                     <div class="car-list-content">
                         <div class="single-car-wrap">
@@ -66,10 +116,14 @@
                         </div>
                     </div>
                     <br>
+
+                   
                      
                     @endforeach
                     
                     <br>
+                     @endif
+                  
                   
 
 
