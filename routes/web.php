@@ -11,14 +11,14 @@
 |
 */
 Route::get('/', 'HomeController@index')->name('user');
-Route::get('/admin/index', 'UserController@index')->name('admin');
+Route::get('/admin/index', 'UserController@index')->name('admin')->middleware('admin');
 Route::get('/admin/createcar','CarController@insert');
 Route::post('/admin/createcar','CarController@store');
 
 
 
 Route::get('/user/index', 'UserController@user_index')->name('user');
-Route::get('/user/login','UserController@login')->name('user.login');
+Route::get('/user/login','UserController@login')->name('user.login')->middleware('auth');
 Route::get('/user/register','UserController@register')->name('user.register');
 
 Route::get('/admin/updatecar/{car}','CarController@editcar');
@@ -71,20 +71,20 @@ Route::delete('/user/deletemessage','ForumController@deletemessage');
 Route::put('/user/updatemessage','ForumController@updatemessage')->name('user.updateforummessage');
 Route::get('/user/updatemessage/{id}','ForumController@editmessage');
 
-Route::get('/admin/booking/detail','BookingController@view_bookings');
-Route::get('/admin/view/users','UserController@view_users');
+Route::get('/admin/booking/detail','BookingController@view_bookings')->middleware('admin');
+Route::get('/admin/view/users','UserController@view_users')->middleware('admin');
 
 Route::get('/user/viewprivatecars','PrivateCarController@viewcar')->name('user.viewprivatecar');
 
 Route::get('/user/update/booking/{id}','BookingController@update_user_booking');
 Route::put('/user/edit/booking','BookingController@edit_user_booking');
 Route::put('/user/cancel/booking/','BookingController@user_cancel_booking');
-Route::put('/admin/cancel/booking/','BookingController@cancel_booking');
+Route::put('/admin/cancel/booking/','BookingController@cancel_booking')->middleware('admin');
 
-Route::put('/admin/confirm/booking/','BookingController@confirm_booking');
+Route::put('/admin/confirm/booking/','BookingController@confirm_booking')->middleware('admin');
 
-Route::put('/admin/confirm/privatecar/','BookingController@confirm_privatecar');
-Route::delete('/admin/delete/privatecar/','BookingController@delete_privatecar');
+Route::put('/admin/confirm/privatecar/','BookingController@confirm_privatecar')->middleware('admin');
+Route::delete('/admin/delete/privatecar/','BookingController@delete_privatecar')->middleware('admin');
 
 Route::put('/user/edit/yourcar/','UserCarController@edityourcar')->name('user.edityourcar');
 

@@ -1,25 +1,9 @@
 @include('user.includes.header')
 
-    <!--== Page Title Area Start ==-->
-    <section id="page-title-area" class="section-padding overlay">
-        <div class="container">
-            <div class="row">
-                <!-- Page Title Start -->
-                <div class="col-lg-12">
-                    <div class="section-title  text-center">
-                        <h2>Login</h2>
-                        <span class="title-line"><i class="fa fa-car"></i></span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    </div>
-                </div>
-                <!-- Page Title End -->
-            </div>
-        </div>
-    </section>
-    <!--== Page Title Area End ==-->
+
 
     <!--== Login Page Content Start ==-->
-    <section id="lgoin-page-wrap" class="section-padding">
+    <section id="lgoin-page-wrap" class="section-padding" style="margin-top: 70px">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-8 m-auto">

@@ -13,7 +13,10 @@ use File;
 
 class CarController extends Controller
 {
-  
+    function __construct()
+    {
+        $this->middleware('admin');
+    }
 
     public function insert(){
         return view('admin/addCar');
