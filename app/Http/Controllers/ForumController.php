@@ -8,6 +8,7 @@ use Session;
 
 class ForumController extends Controller
 {
+    
       public function forum(){
 
 
@@ -25,7 +26,7 @@ class ForumController extends Controller
         $forum->user_id = Auth::user()->id;
         $forum->save();
 
-        return redirect('user/forum');
+        return redirect('user/forum')->with('msg','Thanks for your feedback');
     }
 
 public function deletemessage(Request $r)
