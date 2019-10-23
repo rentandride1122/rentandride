@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+x`<!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
 <head>
@@ -130,7 +130,6 @@
                                     </ul>
                                 </li>
                                 <li><a href="{{ url('user/forum') }}">Forum</a></li>
-                                <li><a href="{{ url('user/about') }}">About Us</a></li>
                                 <li><a href="{{ url('user/booking/detail') }}">My Booking</a></li>
                             </ul>
                         </nav>
