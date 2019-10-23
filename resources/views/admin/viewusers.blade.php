@@ -5,7 +5,7 @@
 <!--main content start-->
     <section id="main-content">
       <section class="wrapper" style="height: 1000px">
-        <h3><i class="fa fa-angle-right"></i>Car Details</h3>
+        <h3><i class="fa fa-angle-right"></i>User Details</h3>
 
         Total: {{ $users->count()}}
 
@@ -17,7 +17,6 @@
         <div class="row mt">
 
           <div class="col-md-12">
-             <a href="{{ url('admin/createcar') }}" class="btn btn-theme" >Add Car</a>
             <div class="content-panel">
               @if(\Session::has('msg'))
           <div class = 'alert alert-success'>
