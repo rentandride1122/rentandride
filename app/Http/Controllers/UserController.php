@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Notifications\AdminNotification;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Notifications\Notifiable;
 
 use Auth;
 
@@ -17,6 +20,13 @@ class UserController extends Controller
     	return view('user/register');
     }
     public function index(){
+
+        $admin = User::select('id')->where('email','admin@admin.com')->first();
+               
+
+        User::find($admin->id)->notify(new AdminNotification());
+
+
     	return view('admin/index');
     }
 
