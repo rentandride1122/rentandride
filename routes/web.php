@@ -88,6 +88,9 @@ Route::delete('/admin/delete/privatecar/','BookingController@delete_privatecar')
 
 Route::put('/user/edit/yourcar/','UserCarController@edityourcar')->name('user.edityourcar');
 
+Route::get('/user/car/fulldescription/{id}','UserCarController@fullcar')->name('user.fullcar');
+Route::get('/user/privatecar/fulldescription/{id}','UserCarController@fullprivatecar')->name('user.fullprivatecar');
+
 
 
 

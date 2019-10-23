@@ -136,4 +136,17 @@ class UserCarController extends Controller
 
         return redirect('/user/yourcar')->with('msg','Changes made');
     }
+
+    public function fullcar($id){
+        $car = Car::find($id);
+
+        return view('user.cardescription',compact('car'));
+
+    }
+    public function fullprivatecar($id){
+        $car = PrivateCar::find($id);
+
+        return view('user.privatecardescription',compact('car'));
+
+    }
 }

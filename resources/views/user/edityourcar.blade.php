@@ -1,25 +1,9 @@
 @include('user.includes.header')
 
-<!--== Page Title Area Start ==-->
-    <section id="page-title-area" class="section-padding overlay">
-        <div class="container">
-            <div class="row">
-                <!-- Page Title Start -->
-                <div class="col-lg-12">
-                    <div class="section-title  text-center">
-                        <h2>Edit your car</h2>
-                        <span class="title-line"><i class="fa fa-car"></i></span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    </div>
-                </div>
-                <!-- Page Title End -->
-            </div>
-        </div>
-    </section>
-    <!--== Page Title Area End ==-->
+
 
     <!--== Contact Page Area Start ==-->
-    <div class="contact-page-wrao section-padding">
+    <div class="contact-page-wrao section-padding" style="margin-top: 70px">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 m-auto">
@@ -36,7 +20,8 @@
               @endforeach
             </ul>
           </div>
-          @endif
+          @endif	
+          	<h3>Edit your car</h3><br>
                     
                     	<form action="{{ url('user/edit/yourcar') }}" method="POST" enctype="multipart/form-data">
 						  <div class="form-group">
