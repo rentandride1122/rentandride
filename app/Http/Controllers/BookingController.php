@@ -19,6 +19,8 @@ class BookingController extends Controller
             return redirect('user/viewcars')->with('msg','Sorry, You cannot book more than one car at a time');
         }
 
+
+
     	$car_id = $id;
     	return view('user.carbooking',compact('car_id'));
     }
@@ -45,9 +47,17 @@ class BookingController extends Controller
          //    );
 
     //$r->validate($validation);
+        // $a = Booking::select('booking_from')->where([['car_id',$r->get('car_id')],['remarks','!=','canceled']])->get();
 
+        // $b = Booking::select('booking_to')->where([['car_id',$r->get('car_id')],['remarks','!=','canceled']])->get();
+
+        // dd($a,$b);
         
+        
+        $check = Booking::whereBetween('Booking_from',[$r->get('booking_from'),$r->get('booking_to')])->where([['car_id',$r->get('car_id')],['remarks','!=','canceled']])->get();
        
+       $check2 = Booking::whereBetween('Booking_to',[$r->get('booking_from'),$r->get('booking_to')])->where([['car_id',$r->get('car_id')],['remarks','!=','canceled']])->get();
+        dd($check,$check2);
     	
         $booking = new Booking;
         $booking->booking_from = $r->get('booking_from');

@@ -9,6 +9,8 @@ use Session;
 class ForumController extends Controller
 {
       public function forum(){
+
+
          $comments = \App\Forum::orderBy('created_at','DESC')->paginate(10);
         return view('user/forum',compact('comments'));
     }
@@ -32,7 +34,7 @@ public function deletemessage(Request $r)
     $forum = \App\Forum::find($id);
  
     $forum->delete();    
-    return redirect('/user/forum')->with('msg','Message deleted');
+    return redirect('/user/forum')->with('msg','Comment deleted');
  
 }
  public function editmessage($id){
@@ -52,7 +54,7 @@ public function deletemessage(Request $r)
         
         $forum->save();
 
-        return redirect('/user/forum')->with('msg','Updated successfully');
+        return redirect('/user/forum')->with('msg','Comment Updated');
 
     }
 

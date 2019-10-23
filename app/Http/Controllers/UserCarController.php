@@ -149,4 +149,8 @@ class UserCarController extends Controller
         return view('user.privatecardescription',compact('car'));
 
     }
+
+    public function date(){
+        return view('user.date');
+    }
 }
