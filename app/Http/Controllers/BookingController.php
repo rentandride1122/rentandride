@@ -54,10 +54,10 @@ class BookingController extends Controller
         // dd($a,$b);
         
         
-        $check = Booking::whereBetween('Booking_from',[$r->get('booking_from'),$r->get('booking_to')])->where([['car_id',$r->get('car_id')],['remarks','!=','canceled']])->get();
+       //  $check = Booking::whereBetween('Booking_from',[$r->get('booking_from'),$r->get('booking_to')])->where([['car_id',$r->get('car_id')],['remarks','!=','canceled']])->get();
        
-       $check2 = Booking::whereBetween('Booking_to',[$r->get('booking_from'),$r->get('booking_to')])->where([['car_id',$r->get('car_id')],['remarks','!=','canceled']])->get();
-        dd($check,$check2);
+       // $check2 = Booking::whereBetween('Booking_to',[$r->get('booking_from'),$r->get('booking_to')])->where([['car_id',$r->get('car_id')],['remarks','!=','canceled']])->get();
+       //  dd($check,$check2);
     	
         $booking = new Booking;
         $booking->booking_from = $r->get('booking_from');
