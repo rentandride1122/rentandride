@@ -23,7 +23,7 @@ class BookingController extends Controller
     	return view('user.carbooking',compact('car_id'));
     }
     public function insertprivate($id){
-        $book = Booking::where('user_id', Auth::user()->id)->first();
+        $book = Booking::where([['user_id', Auth::user()->id],['remarks','!=','canceled']])->first();
         
         if($book){
             return redirect('user/viewprivatecars')->with('msg','Sorry, You cannot book more than one car at a time');

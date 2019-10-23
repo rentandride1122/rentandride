@@ -30,7 +30,7 @@
                             <div class="row">
                                 <!-- Single Car Thumbnail -->
                                 <div class="col-lg-5">
-                                    <a href="#"><img style="height: 220px; margin:5px" src = "{{ URL::to('/').'/uploads/'.$c['image'] }}"></a>
+                                    <a href="{{ url('user/privatecar/fulldescription/'.$c['id']) }}"><img style="height: 220px; margin:5px" src = "{{ URL::to('/').'/uploads/'.$c['image'] }}"></a>
                                 </div>
                                 <!-- Single Car Thumbnail -->
 

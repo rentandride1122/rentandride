@@ -20,8 +20,7 @@
             </ul>
           </div>
           @endif
-           <a href="{{ url('user/createcar') }}" class="btn btn-primary">Add new car</a>
-           <p><br></p>
+          
 
             <div class="row" >
                 <!-- Choose Area Content Start -->
@@ -53,10 +52,10 @@
                                                 <div class="p-car-content">
                                                     <h3>
                                                         <a href="#">{{ $car['car_name'] }}</a>
-                                                        <span class="price"><i class="fa fa-tag"></i> {{ $car['remarks'] }}</span>
+                                                        <span class="price"><i class="fa fa-tag"></i>Price: Rs. {{ $car['price'] }}</span>
                                                     </h3>
                                                     <h5> Model: {{ $car['car_model'] }}</h5>
-                                                    <h5> Price: Rs. {{ $car['price'] }}</h5>
+                                                 
                                                     <h5> Capacity: {{ $car['capacity'] }}</h5>
                                                     <h5> Fuel Type: {{ $car['fuel_type'] }}</h5>
                                                     <h5> AC: {{ $car['aircondition'] }}</h5>
@@ -66,15 +65,8 @@
 
                                                     <h5 align="right">{{ $car['created_at'] }}</h5>
 
-                                                    <a href="{{ url('user/update/yourcar/'.$car['id']) }}" class="btn btn-success">Edit</a>
-                                                    <!-- <a href="{{ url('user/delete/yourcar/'.$car['id']) }}" class="btn btn-danger">Delete</a> -->
-                                                    <form action = "{{  url('user/delete/yourcar') }}" method = 'POST'>
-
-                      <input type = 'hidden' name = 'id' value = "{{ $car['id'] }}" />
-                      <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
-                      <input type = 'hidden' name = '_method' value = 'DELETE' />
-                     <button  class="btn btn-danger">Delete</button>
-                      </form>
+                                                    <a href="{{ url('client/bookcar/'.$car['id']) }}" class="rent-btn">Book It</a>
+                                                   
                                                     
 
                                                 </div>
