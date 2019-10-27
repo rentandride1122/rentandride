@@ -12,8 +12,8 @@
 */
 Route::get('/', 'HomeController@index')->name('user');
 Route::get('/admin/index', 'UserController@index')->name('admin')->middleware('admin');
-Route::get('/admin/createcar','CarController@insert');
-Route::post('/admin/createcar','CarController@store');
+Route::get('/admin/createcar','CarController@insert')->middleware('admin');
+Route::post('/admin/createcar','CarController@store')->middleware('admin');
 
 
 
@@ -93,7 +93,9 @@ Route::get('/user/privatecar/fulldescription/{id}','UserCarController@fullprivat
 
 Route::get('/date','UserCarController@date');
 
-
+Route::get('/admin/forum','ForumController@admin_forum')->middleware('admin');
+Route::get('/admin/notification','NotificationController@notification')->middleware('admin');
+Route::put('/admin/complete/booking/','BookingController@complete_booking')->middleware('admin');
 
 
 Auth::routes();

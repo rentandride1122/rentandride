@@ -5,15 +5,14 @@
 <!--main content start-->
     <section id="main-content">
       <section class="wrapper" style="height: 1000px">
-        <h3><i class="fa fa-angle-right"></i>User Details</h3>
-
-        Total: {{ $users_count->count()}}
-
-
+        <h3><i class="fa fa-angle-right"></i>Feedbacks</h3>
+          Total: {{ $comments_count->count() }}
+ 
         <!-- row -->
         <div class="row mt">
 
           <div class="col-md-12">
+            
             <div class="content-panel">
               @if(\Session::has('msg'))
           <div class = 'alert alert-success'>
@@ -34,35 +33,32 @@
                 
                 <thead>
                   <tr>
-                   
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Address</th>
-                    <th>Phone</th>
-                 
-                    <th>Registered at</th>
                     
-                   
+                    <th>Feedbacks</th>
+                    <th>User</th>
+                    <th>Time</th>
+                    
                   </tr>
                 </thead>
                 <tbody>
 
-                  @foreach($users as $u)
-                  <tr>
-                    <td>{{ $u['name'] }}</td>
-                    <td>{{ $u['email'] }}</td>
-                    <td>{{ $u['address'] }}</td>
-                    <td>{{ $u['phone'] }}</td>
-                    <td>{{ $u['created_at']->diffForHumans() }}</td>
+                  @foreach($comments as $c)
+
                  
-                   
+                  <tr>
+                    
+                    <td>{{ $c['comment'] }}</td>
+                    <td>{{ $c->user['email'] }}</td>
+                    <td>{{ $c['created_at']->diffForHumans() }}</td>
+                    
+                    
                   </tr>
                   @endforeach
                
                 </tbody>
               </table>
 
-              {{ $users->links()}}
+             {{ $comments->links() }}
 
 
             </div>

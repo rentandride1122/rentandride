@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use \App\Car;
 use \App\PrivateCar;
 
@@ -25,33 +26,34 @@ class CarController extends Controller
     {
 
          $validation = array(
-            'name'=>'required',
-            'model'=>'required',
+            'car_name'=>'required',
+            'car_model'=>'required',
             'price'=>'required|integer',
             'capacity'=>'required|integer',
-            'description'=>'required',
+            'car_description'=>'required',
             'image'=>'mimes:jpeg,bmp,png,gif|max:3500'
             );
 
     $r->validate($validation);
 
-        $imgname = '';
+        $image = '';
         if ($r->hasfile('image')) {
             $file = $r->file('image');
-            $imgname = date('ymdhis').$file->getClientOriginalName();
+            $image = date('ymdhis').$file->getClientOriginalName();
             $path = public_path().'/uploads/';
-            $file->move($path,$imgname);
+            $file->move($path,$image);
+            // Storage::disk('images')->put($name,file_get_contents($file));
         }
 
         $car = new Car;
-        $car->car_name = $r->get('name');
-        $car->car_model = $r->get('model');
+        $car->car_name = $r->get('car_name');
+        $car->car_model = $r->get('car_model');
         $car->price = $r->get('price');
-        $car->car_description = $r->get('description');
+        $car->car_description = $r->get('car_description');
         $car->capacity = $r->get('capacity');
-        $car->image = $imgname;
+        $car->image = $image;
         $car->fuel_type = $r->get('fuel_type');
-        $car->aircondition = $r->get('ac');
+        $car->aircondition = $r->get('aircondition');
         $car->save();
 
         return redirect('/admin/createcar')->with('msg','Car added successfully');
@@ -129,6 +131,7 @@ public function deletecar(Request $r)
 
         $cars = Car::orderBy('created_at','DESC')->paginate(5);
         $car = Car::all();
+
 
  		return view('admin.viewcar',compact('cars','car'));
 

@@ -24,12 +24,30 @@ $factory->define(User::class, function (Faker $faker) {
         'email_verified_at' => now(),
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => Str::random(10),
-        'user_type'=>'user',
+        
         'address'=>'kathmandu',
         'phone'=>'9860050467',
 
     ];
 });
+$factory->state(User::class,'admin', function (Faker $faker) {
+    return [
+       
+        'user_type'=>'admin',
+       
+
+    ];
+});
+$factory->state(User::class,'user', function (Faker $faker) {
+    return [
+       
+        'user_type'=>'user',
+       
+
+    ];
+});
+
+
 $factory->define(Car::class, function (Faker $faker) {
     return [
         'car_name'=>'BMW',
@@ -58,6 +76,6 @@ $factory->define(Car::class, function (Faker $faker) {
 // 	];
 
 
-});
+//});
 
 

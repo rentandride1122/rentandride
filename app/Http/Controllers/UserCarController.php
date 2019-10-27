@@ -6,7 +6,14 @@ use Illuminate\Http\Request;
 use Auth;
 use \App\PrivateCar;
 use \App\Car;
+use \App\User;
 use File;
+use App\Notifications\UserCarInsert;
+use App\Notifications\UserCarDelete;
+use App\Notifications\UserCarUpdate;
+
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Notifications\Notifiable;
 
 class UserCarController extends Controller
 {
@@ -72,6 +79,9 @@ class UserCarController extends Controller
         $car->remarks = 'pending';
         $car->save();
 
+        $admin = User::select('id')->where('email','admin@admin.com')->first();
+        User::find($admin->id)->notify(new UserCarInsert());
+
         return redirect('/user/yourcar')->with('msg','your car has been added');
 
     }
@@ -102,9 +112,26 @@ class UserCarController extends Controller
     public function deleteyourcar(Request $r){
          $id = $r->get('id');
         $car = \App\PrivateCar::find($id);
-        
+        $image_path = public_path()."/uploads/".$car['image'];
+        if(File::exists($image_path)) {
+        File::delete($image_path);
+        }
 
-    $car->delete();    
+        $billbook_path = public_path()."/uploads/".$car['billbook'];
+        if(File::exists($billbook_path)) {
+        File::delete($billbook_path);
+        }
+
+        $citizenship_path = public_path()."/uploads/".$car['citizenship'];
+        if(File::exists($citizenship_path)) {
+        File::delete($citizenship_path);
+        }
+
+        $car->delete();    
+
+        $admin = User::select('id')->where('email','admin@admin.com')->first();
+        User::find($admin->id)->notify(new UserCarDelete());
+
     return redirect('/user/yourcar')->with('msg','Car deleted');
     }
 
@@ -133,6 +160,9 @@ class UserCarController extends Controller
         $car->fuel_type = $r->get('fuel_type');
         $car->aircondition = $r->get('aircondition');
         $car->save();
+
+        $admin = User::select('id')->where('email','admin@admin.com')->first();
+        User::find($admin->id)->notify(new UserCarUpdate());
 
         return redirect('/user/yourcar')->with('msg','Changes made');
     }

@@ -32,10 +32,11 @@
 
                     
                     <img style = "height:200px; width:auto;' >" src = "{{ URL::to('/').'/uploads/'.$car['image'] }}"> <br>
-                    <p style="margin-left: 206px">By: {{ $car->user['email'] }}</p>
+                    <p >By: {{ $car->user['email'] }},
+                    {{ $car['created_at']->diffForHumans() }}</p>
                    
 
-                     <h4>ID: {{ $car['id'] }}</h4> 
+                    
                      <h4>Name: {{ $car['car_name'] }}</h4>
                      <h4>Model: {{ $car['car_model'] }}</h4>
                      <h4>price: {{ $car['price'] }}</h4>

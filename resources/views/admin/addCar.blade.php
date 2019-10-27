@@ -36,13 +36,13 @@
                   <div class="form-group ">
                     <label for="cname" class="control-label col-lg-2">Name</label>
                     <div class="col-lg-10">
-                      <input class=" form-control" value="{{ old('name') }}" name="name" minlength="2" type="text" required />
+                      <input class=" form-control" value="{{ old('car_name') }}" name="car_name" minlength="2" type="text" required />
                     </div>
                   </div>
                   <div class="form-group ">
                     <label for="cname" class="control-label col-lg-2">Model</label>
                     <div class="col-lg-10">
-                      <input class=" form-control" value="{{ old('model') }}" name="model" minlength="2" type="text" required />
+                      <input class=" form-control" value="{{ old('car_model') }}" name="car_model" minlength="2" type="text" required />
                     </div>
                   </div>
                   <div class="form-group ">
@@ -71,7 +71,7 @@
                   <div class="form-group ">
                     <label for="ccomment" class="control-label col-lg-2">Description</label>
                     <div class="col-lg-10">
-                      <textarea class="form-control" name="description" required>{{ old('description') }}</textarea>
+                      <textarea class="form-control" name="car_description" required>{{ old('car_description') }}</textarea>
                     </div>
                   </div>
                   <div class="form-group ">
@@ -89,14 +89,14 @@
                     <div class="col-lg-10">
                      <!--  <textarea class="form-control " id="ccomment" name="description" required></textarea> -->
                      <div class="form-control">
-                     <input type="radio" name="ac" value="yes">Yes
-                     <input type="radio" name="ac" value="no" checked="">No
+                     <input type="radio" name="aircondition" value="yes">Yes
+                     <input type="radio" name="aircondition" value="no" checked="">No
                      </div>
                     </div>
                   </div>
                  
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                  <input type="hidden" name="type" value="company">
+                  
                   <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
                       <button class="btn btn-theme" type="submit">Save</button>

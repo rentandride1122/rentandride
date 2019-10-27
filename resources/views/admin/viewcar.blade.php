@@ -48,12 +48,15 @@
                     <th>Image</th>
                     <th>Fuel Type</th>
                     <th>Air Condition</th>
+                    <th>Time</th>
                     <th></th>
                   </tr>
                 </thead>
                 <tbody>
 
                   @foreach($cars as $c)
+
+                 
                   <tr>
                     <td>{{ $c['id'] }}</td>
                     <td>{{ $c['car_name'] }}</td>
@@ -64,6 +67,7 @@
                     <td><img style = "height:120px; width:auto;' >" src = "{{ URL::to('/').'/uploads/'.$c['image'] }}"> </td>
                     <td>{{ $c['fuel_type'] }}</td>
                     <td>{{ $c['aircondition'] }}</td>
+                    <td>{{ $c['created_at']->diffForHumans() }}</td>
                    
 
 

@@ -36,13 +36,7 @@
   <script type="text/javascript">
     $(document).ready(function() {
       var unique_id = $.gritter.add({
-        // (string | mandatory) the heading of the notification
-        title: 'Welcome to Rent and Ride Service!',
-        // (string | mandatory) the text inside the notification
-        text: 'Now you can rent your car to others as well.',
-        // (string | optional) the image to display on the left
-        image: '{{ asset('ferrari3.jfif')}}',
-        // (bool | optional) if you want it to fade out on its own or just sit there
+        
         sticky: false,
         // (int | optional) the time you want it to be alive for before fading out
         time: 8000,

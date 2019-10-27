@@ -20,7 +20,14 @@ class Car_Test extends TestCase
    /** @test */
     public function admin_can_insert_car()
     {
+
         $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->states('admin')->create();
+        $this->actingAs($user);
+
+        Storage::fake('avatars1');
+        $image = UploadedFile::fake()->create('avatar1.jpg',12);
         $response= $this->post('/admin/createcar',[
             'car_name'=>'BMW',
             'car_model'=>'123',
@@ -29,9 +36,11 @@ class Car_Test extends TestCase
             'capacity'=>'5',
             'fuel_type'=>'Disel',
             'aircondition'=>'yes',
-            'image'=>'testimg',
+            'image'=>$image,
         ]);
-        $response->assertOk();
+        var_dump($response);
+
+        // $response->assertOk();
         $this->assertCount(1,Car::all());
 
     }

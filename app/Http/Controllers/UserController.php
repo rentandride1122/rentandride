@@ -21,10 +21,10 @@ class UserController extends Controller
     }
     public function index(){
 
-        $admin = User::select('id')->where('email','admin@admin.com')->first();
+        // $admin = User::select('id')->where('email','admin@admin.com')->first();
                
 
-        User::find($admin->id)->notify(new AdminNotification());
+        // User::find($admin->id)->notify(new AdminNotification());
 
 
     	return view('admin/index');
@@ -117,8 +117,9 @@ class UserController extends Controller
     }
 
     public function view_users(){
-        $users = User::orderBy('created_at','DESC')->paginate(10);
-        return view('admin/viewusers',compact('users'));
+       $users_count = User::where('user_type','!=','admin')->get();
+        $users = User::where('user_type','!=','admin')->orderBy('created_at','DESC')->paginate(10);
+        return view('admin/viewusers',compact('users','users_count'));
     }
 
 

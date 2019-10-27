@@ -33,13 +33,14 @@
                 
                 <thead>
                   <tr>
-                    <th>ID</th>
+                    
                     <th>Name</th>
                     <th>Model</th>
                     <th>Price (Rs)</th>
                     <th>Image</th>
                     <th>Posted By</th>
                     <th>Remarks</th>
+                    <th>Time</th>
                 
                   </tr>
                 </thead>
@@ -47,7 +48,7 @@
 
                   @foreach($cars as $c)
                   <tr>
-                    <td>{{ $c['id'] }}</td>
+                   
                     <td>{{ $c['car_name'] }}</td>
                     <td>{{ $c['car_model'] }}</td>
                     
@@ -55,6 +56,7 @@
                     <td><img style = "height:120px; width:auto;' >" src = "{{ URL::to('/').'/uploads/'.$c['image'] }}"> </td>
                    <td>{{ $c->user['email'] }}</td>
                    <td>{{ $c['remarks'] }}</td>
+                   <td>{{ $c['created_at']->diffForHumans() }}</td>
 
                     <td>
                       <a href="{{ url('admin/viewprivatecar/'.$c['id'] ) }}">View</a>

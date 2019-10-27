@@ -8,6 +8,12 @@ use \App\Booking;
 use \App\PrivateCar;
 use \App\Car;
 use File;
+use \App\User;
+use App\Notifications\BookingNotification;
+use App\Notifications\UserBookingUpdate;
+use App\Notifications\UserBookingCancel;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Notifications\Notifiable;
 
 class BookingController extends Controller
 {
@@ -69,20 +75,25 @@ class BookingController extends Controller
         
         $booking->save();
 
+        $admin = User::select('id')->where('email','admin@admin.com')->first();
+        User::find($admin->id)->notify(new BookingNotification());
+
         return redirect('/user/index')->with('msg','Your request has been sent');
 
     }
 
     public function view(){
     	$booking = Booking::where([['user_id',Auth::user()->id],['remarks','!=','canceled']])->orderBy('created_at','DESC')->paginate(6);
+       
 
     	return view('user.mybooking',compact('booking'));
     }
 
     public function view_bookings(){
+         $bookings_count = Booking::all();
     	$bookings = Booking::orderBy('created_at','DESC')->paginate(8);
     	
-    	return view('admin/viewbookings',compact('bookings'));
+    	return view('admin/viewbookings',compact('bookings','bookings_count'));
     }
 
     public function update_user_booking($id){
@@ -98,6 +109,9 @@ class BookingController extends Controller
         $booking->remarks = 'pending';
         
         $booking->save();
+
+        $admin = User::select('id')->where('email','admin@admin.com')->first();
+        User::find($admin->id)->notify(new UserBookingUpdate());
 
         return redirect('/user/booking/detail')->with('msg','Your request has been sent');
     }
@@ -135,6 +149,9 @@ class BookingController extends Controller
         $booking->remarks = 'canceled';
         $booking->save();
 
+        $admin = User::select('id')->where('email','admin@admin.com')->first();
+        User::find($admin->id)->notify(new UserBookingCancel());
+
         return redirect('/user/booking/detail')->with('msg','Your Booking has been Canceled');
 
     }
@@ -161,4 +178,13 @@ class BookingController extends Controller
     return redirect('/admin/viewprivatecar')->with('msg','Car deleted');
  
 }
+
+public function complete_booking(Request $r){
+        $id = $r->get('id');
+        $booking = Booking::find($id);
+        $booking->remarks = 'done';
+        $booking->save();
+
+        return redirect('/admin/booking/detail')->with('msg','Booking Completed');
+    }
 }
