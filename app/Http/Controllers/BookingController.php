@@ -10,6 +10,10 @@ use \App\Car;
 use File;
 use \App\User;
 use App\Notifications\BookingNotification;
+use App\Notifications\AdminBookingCancel;
+use App\Notifications\AdminBookingApprove;
+use App\Notifications\AdminDeleteUserCar;
+use App\Notifications\AdminConfirmCar;
 use App\Notifications\UserBookingUpdate;
 use App\Notifications\UserBookingCancel;
 use Illuminate\Support\Facades\Notification;
@@ -18,7 +22,7 @@ use Illuminate\Notifications\Notifiable;
 class BookingController extends Controller
 {
     public function insert($id){
-        $book = Booking::where([['user_id', Auth::user()->id],['remarks','!=','canceled']])->first();
+        $book = Booking::where([['user_id', Auth::user()->id],['remarks','!=','canceled'],['remarks','!=','done']])->first();
 
         
         if($book){
@@ -83,7 +87,7 @@ class BookingController extends Controller
     }
 
     public function view(){
-    	$booking = Booking::where([['user_id',Auth::user()->id],['remarks','!=','canceled']])->orderBy('created_at','DESC')->paginate(6);
+    	$booking = Booking::where([['user_id',Auth::user()->id],['remarks','!=','canceled'],['remarks','!=','done']])->orderBy('created_at','DESC')->paginate(6);
        
 
     	return view('user.mybooking',compact('booking'));
@@ -118,17 +122,26 @@ class BookingController extends Controller
 
     public function confirm_booking(Request $r){
         $id = $r->get('id');
+        $userid = $r->get('userid');
+
         $booking = Booking::find($id);
         $booking->remarks = 'approved';
         $booking->save();
+
+        User::find($userid)->notify(new AdminBookingApprove());
 
         return redirect('/admin/booking/detail')->with('msg','Booking Approved');
     }
     public function cancel_booking(Request $r){
         $id = $r->get('id');
+
+        $userid = $r->get('userid');
+        
         $booking = Booking::find($id);
         $booking->remarks = 'canceled';
         $booking->save();
+
+        User::find($userid)->notify(new AdminBookingCancel());
 
         return redirect('/admin/booking/detail')->with('msg','Booking Canceled');
     }
@@ -136,9 +149,14 @@ class BookingController extends Controller
 
     public function confirm_privatecar(Request $r){
         $id = $r->get('id');
+        $userid = $r->get('userid');
+       
         $privatecar = PrivateCar::find($id);
         $privatecar->remarks = 'approved';
         $privatecar->save();
+
+
+        User::find($userid)->notify(new AdminConfirmCar());
 
         return redirect('/admin/viewprivatecar')->with('msg','Car Approved');
     }
@@ -159,6 +177,8 @@ class BookingController extends Controller
     public function delete_privatecar(Request $r)
 {
     $id = $r->get('id');
+    $userid = $r->get('userid');
+    
     $car = \App\PrivateCar::find($id);
         $image_path = public_path()."/uploads/".$car['image'];
         if(File::exists($image_path)) {
@@ -174,7 +194,9 @@ class BookingController extends Controller
         File::delete($citizenship_path);
         }
 
-    $car->delete();    
+    $car->delete();   
+
+    User::find($userid)->notify(new AdminDeleteUserCar()); 
     return redirect('/admin/viewprivatecar')->with('msg','Car deleted');
  
 }

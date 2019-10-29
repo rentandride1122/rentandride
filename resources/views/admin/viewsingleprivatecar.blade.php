@@ -114,6 +114,7 @@
                      <form action = "{{ url('admin/confirm/privatecar') }}" method = 'POST'>
 
                       <input type = 'hidden' name = 'id' value = "{{ $car['id'] }}" />
+                      <input type = 'hidden' name = 'userid' value = "{{ $car->user['id'] }}" />
                       <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
                       <input type = 'hidden' name = '_method' value = 'PUT' />
                      <button  class="btn btn-primary">Approve</button>
@@ -124,6 +125,7 @@
                      <form action = "{{ url('admin/delete/privatecar') }}" method = 'POST'>
 
                       <input type = 'hidden' name = 'id' value = "{{ $car['id'] }}" />
+                      <input type = 'hidden' name = 'userid' value = "{{ $car->user['id'] }}" />
                       <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
                       <input type = 'hidden' name = '_method' value = 'DELETE' />
                      <button  class="btn btn-danger">Delete</button>
@@ -139,6 +141,7 @@
                      <form action = "{{ url('admin/delete/privatecar') }}" method = 'POST'>
 
                       <input type = 'hidden' name = 'id' value = "{{ $car['id'] }}" />
+                      <input type = 'hidden' name = 'userid' value = "{{ $car->user['id'] }}" />
                       <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
                       <input type = 'hidden' name = '_method' value = 'DELETE' />
                      <button  class="btn btn-danger">Delete</button>

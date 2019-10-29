@@ -17,4 +17,8 @@ class NotificationController extends Controller
     	auth()->user()->unreadNotifications->markAsRead();
     	return redirect('admin/notification');
     }
+    public function user_markAsRead(){
+    	auth()->user()->unreadNotifications->markAsRead();
+    	return redirect()->back();
+    }
 }

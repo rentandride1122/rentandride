@@ -1,4 +1,4 @@
-x`<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
 <head>
@@ -30,37 +30,15 @@ x`<!DOCTYPE html>
     <link href="{{ asset('user/assets/css/responsive.css') }}" rel="stylesheet">
 
 
-   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-  $( function() {
-    $( "#datepicker" ).datepicker();
-  } );
-  </script>
+   <link type="text/css" rel="stylesheet" href="{{ asset('user/assets/js/jquery-ui.min.css') }}">
+   <script src="{{ asset('user/assets/js/jquery-3.2.1.min.js') }}"></script>
   
-
-
-    <!--[if lt IE 9]>
-        <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+ 
 </head>
 
 
 <body class="loader-active">
 
-
-    <!--== Preloader Area Start ==-->
-    <!-- <div class="preloader">
-        <div class="preloader-spinner">
-            <div class="loader-content">
-                <img src="{{ asset('assets/user/assets/img/preloader.gif') }}" alt="JSOFT">
-            </div>
-        </div>
-    </div> -->
-    <!--== Preloader Area End ==-->
 
     <!--== Header Area Start ==-->
     <header id="header-area" class="fixed-top">
@@ -80,11 +58,46 @@ x`<!DOCTYPE html>
                     </div>
                     <!--== Single HeaderTop End ==-->
 
+                     @if(Auth::check() == false)
+                        <div class="col-lg-3 ">
+                        </div>
+                     @else
                     <!--== Single HeaderTop Start ==-->
-                    <div class="col-lg-3 text-center">
-                        <i class="fa fa-clock-o"></i> Mon-Fri 09.00 - 17.00
+                    <div class="col-lg-3 ">
+                        
+                        <nav class="mainmenu alignright" style="margin-top: -12px;margin-bottom: -15px">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-bell"></i>
+                                    <span class="badge badge-light">{{ auth()->user()->unReadNotifications->count() }}</span>
+                                </a>
+                                    <ul>
+                                        <li style="background: #007bff"><a href="{{ url('user/notification/markAsRead') }}">Mark all as read</a></li>
+
+                                         @foreach(auth()->user()->unreadNotifications as $notification)
+                                        <li style="background: #4ECDC4">
+                                            <a href="#">{{ $notification->data['data'] }}
+                                                <br>
+                                                <p style="font-size: 10px">{{ $notification['created_at']->diffForHumans() }}</p>
+                                            </a>
+                                        </li>
+                                        @endforeach
+
+                                        @foreach(auth()->user()->readNotifications as $notification)
+                                        <li>
+                                            <a href="#">{{ $notification->data['data'] }}
+                                                 <p style="font-size: 10px">{{ $notification['created_at']->diffForHumans() }}</p>
+                                            </a>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                                
+                            </ul>
+                        </nav>
+                    
                     </div>
                     <!--== Single HeaderTop End ==-->
+                    @endif
 
                     <!--== Social Icons Start ==-->
                     <div class="col-lg-3 text-right">

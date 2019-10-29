@@ -125,6 +125,7 @@
                        <form action = "{{ url('admin/confirm/booking') }}" method = 'POST'>
 
                       <input type = 'hidden' name = 'id' value = "{{ $b['id'] }}" />
+                      <input type = 'hidden' name = 'userid' value = "{{ $b->user['id'] }}" />
                       <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
                       <input type = 'hidden' name = '_method' value = 'PUT' />
                      <button  class="btn btn-success">Approve</button>
@@ -164,6 +165,7 @@
                       <form action = "{{ url('admin/cancel/booking') }}" method = 'POST'>
 
                       <input type = 'hidden' name = 'id' value = "{{ $b['id'] }}" />
+                       <input type = 'hidden' name = 'userid' value = "{{ $b->user['id'] }}" />
                       <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
                       <input type = 'hidden' name = '_method' value = 'PUT' />
                      <button  class="btn btn-danger">Cancel</button>
@@ -196,6 +198,7 @@
                        <form action = "{{ url('admin/confirm/booking') }}" method = 'POST'>
 
                       <input type = 'hidden' name = 'id' value = "{{ $b['id'] }}" />
+                       <input type = 'hidden' name = 'userid' value = "{{ $b['user_id'] }}" />
                       <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
                       <input type = 'hidden' name = '_method' value = 'PUT' />
                      <button  class="btn btn-success">Approve</button>
@@ -235,6 +238,7 @@
                       <form action = "{{ url('admin/cancel/booking') }}" method = 'POST'>
 
                       <input type = 'hidden' name = 'id' value = "{{ $b['id'] }}" />
+                       <input type = 'hidden' name = 'userid' value = "{{ $b->user['id'] }}" />
                       <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
                       <input type = 'hidden' name = '_method' value = 'PUT' />
                      <button  class="btn btn-danger">Cancel</button>

@@ -97,6 +97,7 @@ Route::get('/admin/forum','ForumController@admin_forum')->middleware('admin');
 Route::get('/admin/notification','NotificationController@notification')->middleware('admin');
 Route::put('/admin/complete/booking/','BookingController@complete_booking')->middleware('admin');
 Route::get('/admin/notification/markAsRead','NotificationController@markAsRead')->middleware('admin');
+Route::get('/user/notification/markAsRead','NotificationController@user_markAsRead')->middleware('auth');
 
 
 Auth::routes();

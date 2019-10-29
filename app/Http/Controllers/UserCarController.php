@@ -23,18 +23,18 @@ class UserCarController extends Controller
 
     public function store(Request $r)
     {
-     //    $validation = array(
-     //        'car_name'=>'required',
-     //        'car_model'=>'required',
-     //        'price'=>'required|integer',
-     //        'capacity'=>'required|integer',
-     //        'car_description'=>'required',
-     //        'image'=>'mimes:jpeg,bmp,png,gif,jfif|max:3500',
-     //        'billbook'=>'mimes:jpeg,bmp,png,gif,jfif|max:3500',
-     //        'citizenship'=>'mimes:jpeg,bmp,png,gif,jfif|max:3500'
-     //        );
+        $validation = array(
+            'car_name'=>'required',
+            'car_model'=>'required',
+            'price'=>'required|integer',
+            'capacity'=>'required|integer',
+            'car_description'=>'required',
+            'image'=>'mimes:jpeg,bmp,png,gif,jfif|max:3500',
+            'billbook'=>'mimes:jpeg,bmp,png,gif,jfif|max:3500',
+            'citizenship'=>'mimes:jpeg,bmp,png,gif,jfif|max:3500'
+            );
 
-    	// $r->validate($validation);
+    	$r->validate($validation);
 
         $image = '';
         if ($r->hasfile('image')) {
@@ -82,7 +82,7 @@ class UserCarController extends Controller
         $admin = User::select('id')->where('email','admin@admin.com')->first();
         User::find($admin->id)->notify(new UserCarInsert());
 
-        return redirect('/user/yourcar')->with('msg','your car has been added');
+        return redirect('/user/yourcar')->with('msg','your request has been sent');
 
     }
 
@@ -136,15 +136,15 @@ class UserCarController extends Controller
     }
 
     public function edityourcar(Request $r){
-        // $validations = array(
-        //     'name' => 'required',
-        //     'model' => 'required',
-        //     'price' => 'required|integer',
-        //     'capacity' => 'required|integer',
-        //     'description' => 'required',
-        //     'image' => 'mimes:jpeg,bmp,png,gif|max:3500'
-        // );
-        //     $r->validate($validations);
+        $validations = array(
+            'car_name' => 'required',
+            'car_model' => 'required',
+            'price' => 'required|integer',
+            'capacity' => 'required|integer',
+            'car_description' => 'required',
+            
+        );
+            $r->validate($validations);
             $id = $r->get('id');
            
 
