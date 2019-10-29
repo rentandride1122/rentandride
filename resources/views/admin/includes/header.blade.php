@@ -53,21 +53,34 @@
           <li id="header_notification_bar" class="dropdown" >
             <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
               <i class="fa fa-bell-o"></i>
-              <span class="badge bg-warning">{{ auth()->user()->notifications->count() }}</span>
+              @if(auth()->user()->unReadNotifications->count())
+              <span class="badge bg-warning">{{ auth()->user()->unReadNotifications->count() }}</span>
+              @endif
               </a>
             <ul class="dropdown-menu extended notification" >
               <div class="notify-arrow notify-arrow-yellow" ></div>
-              <!-- <li>
-                <p class="yellow">You have 7 new notifications</p>
-              </li> -->
+              <li style="width:350px">
+                <p class="yellow">You have {{ auth()->user()->unReadNotifications->count() }} unread notifications</p>
+              </li>
 
-              @foreach(auth()->user()->notifications as $notification)
-              <li >
+              @foreach(auth()->user()->unreadNotifications as $notification)
+              <li style="background:#4ECDC4;width: 350px">
+                <a href="{{ url('admin/notification/markAsRead') }}">
+                  <span class="label label-danger" ><i class="fa fa-bolt" ></i></span>
+                  {{ $notification->data['data'] }}<br>
+
+                  <span class="small italic">{{ $notification['created_at']->diffForHumans() }}</span>
+                  </a>
+              </li>
+
+              @endforeach
+              @foreach(auth()->user()->readNotifications as $notification)
+              <li style="background:#F7F8F9;width: 350px">
                 <a href="{{ url('admin/notification') }}">
                   <span class="label label-danger" ><i class="fa fa-bolt" ></i></span>
-                  {{ $notification->data['data'] }}
+                  {{ $notification->data['data'] }}<br>
 
-                 <!--  <span class="small italic">4 mins.</span> -->
+                  <span class="small italic">{{ $notification['created_at']->diffForHumans() }}</span>
                   </a>
               </li>
 

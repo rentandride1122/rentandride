@@ -23,7 +23,7 @@ Route::get('/user/register','UserController@register')->name('user.register');
 
 Route::get('/admin/updatecar/{car}','CarController@editcar');
 Route::put('/admin/updatecar','CarController@updatecar');
-Route::delete('/admin/deletecar/{car}','CarController@deletecar');
+
 Route::get('/admin/viewcar','CarController@viewcar')->name('viewcar');
 Route::get('/admin/viewprivatecar','CarController@viewprivatecar')->name('viewprivatecar');
 Route::get('/admin/viewprivatecar/{car}','CarController@viewprivatecarById')->name('viewprivatecarsingle');
@@ -37,7 +37,7 @@ Route::get('/user/register','UserController@register')->name('user.register');
 
 Route::patch('/admin/updatecar/{car}','CarController@updatecar');
 Route::post('/admin/updatecar','CarController@updatecar');
-Route::delete('/admin/deletecar/{car}','CarController@deletecar');
+
 Route::get('/admin/viewcar','CarController@viewcar')->name('viewcar');
 //test change password
 Route::put('/changepassword/{user}','UserController@changepassword');
@@ -96,6 +96,7 @@ Route::get('/date','UserCarController@date');
 Route::get('/admin/forum','ForumController@admin_forum')->middleware('admin');
 Route::get('/admin/notification','NotificationController@notification')->middleware('admin');
 Route::put('/admin/complete/booking/','BookingController@complete_booking')->middleware('admin');
+Route::get('/admin/notification/markAsRead','NotificationController@markAsRead')->middleware('admin');
 
 
 Auth::routes();

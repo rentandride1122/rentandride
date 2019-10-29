@@ -9,6 +9,12 @@ class NotificationController extends Controller
      public function notification(){
 
         // $comments = \App\Notification::orderBy('created_at','DESC')->paginate(10);
+        
         return view('admin/notifications');
+    }
+
+    public function markAsRead(){
+    	auth()->user()->unreadNotifications->markAsRead();
+    	return redirect('admin/notification');
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use \App\Car;
 use \App\PrivateCar;
+use \App\Booking;
 
 use File;
 // Insert Car 
@@ -107,7 +108,11 @@ class CarController extends Controller
 public function deletecar(Request $r)
 {
     $id = $r->get('id');
-    $car = \App\Car::find($id);
+    $car = \App\Car::findorFail($id);
+
+    $check = Booking::where('car_id',$id)->first();
+    
+    if($check == null){
     $image_path = public_path()."/uploads/".$car['image'];
         if(File::exists($image_path)) {
         File::delete($image_path);
@@ -115,12 +120,15 @@ public function deletecar(Request $r)
 
     $car->delete();    
     return redirect('/admin/viewcar')->with('msg','Car Detail deleted');
+}else{
+    return redirect('/admin/viewcar')->with('msg','This car has been booked');
+}
  
 }
 
 
     public function editcar($id){
-        $car = Car::find($id);
+        $car = Car::findorFail($id);
         return view('admin/editcar',compact('car'));
     }
 
@@ -150,7 +158,7 @@ public function deletecar(Request $r)
      public function viewprivatecarById($id)
     {
 
-        $car = PrivateCar::find($id);
+        $car = PrivateCar::findorFail($id);
 
         return view('admin.viewsingleprivatecar',compact('car'));
 
