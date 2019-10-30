@@ -26,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    // protected $redirectTo = '/home';
+     // protected $redirectTo = '/user/index';
     protected function authenticated($request, $user){
 
         if ($user->isRole() == 'admin') {
@@ -44,6 +44,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        
         $this->middleware('guest')->except('logout');
     }
 

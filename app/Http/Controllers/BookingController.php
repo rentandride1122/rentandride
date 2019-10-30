@@ -35,7 +35,7 @@ class BookingController extends Controller
     	return view('user.carbooking',compact('car_id'));
     }
     public function insertprivate($id){
-        $book = Booking::where([['user_id', Auth::user()->id],['remarks','!=','canceled']])->first();
+        $book = Booking::where([['user_id', Auth::user()->id],['remarks','!=','canceled'],['remarks','!=','done']])->first();
         
         if($book){
             return redirect('user/viewprivatecars')->with('msg','Sorry, You cannot book more than one car at a time');
@@ -47,28 +47,37 @@ class BookingController extends Controller
      public function store(Request $r)
     {
 
-         // $validation = array(
-         //    'name'=>'required',
-         //    'model'=>'required',
-         //    'price'=>'required|integer',
-         //    'capacity'=>'required|integer',
-         //    'description'=>'required',
-         //    'image'=>'mimes:jpeg,bmp,png,gif|max:3500'
-         //    );
+         $validation = array(
+            'booking_from'=>'required',
+            'booking_to'=>'required'
+            
+            );
 
-    //$r->validate($validation);
-        // $a = Booking::select('booking_from')->where([['car_id',$r->get('car_id')],['remarks','!=','canceled']])->get();
+    $r->validate($validation);
+        $a = Booking::select('booking_from')->where([['car_id',$r->get('car_id')],['remarks','!=','canceled'],['remarks','!=','done']])->first();
+        $b = Booking::select('booking_to')->where([['car_id',$r->get('car_id')],['remarks','!=','canceled'],['remarks','!=','done']])->first();
 
-        // $b = Booking::select('booking_to')->where([['car_id',$r->get('car_id')],['remarks','!=','canceled']])->get();
+        $private1 = Booking::select('booking_from')->where([['privatecar_id',$r->get('privatecar_id')],['remarks','!=','canceled'],['remarks','!=','done']])->first();
+        $private2 = Booking::select('booking_to')->where([['privatecar_id',$r->get('privatecar_id')],['remarks','!=','canceled'],['remarks','!=','done']])->first();
 
-        // dd($a,$b);
-        
-        
-       //  $check = Booking::whereBetween('Booking_from',[$r->get('booking_from'),$r->get('booking_to')])->where([['car_id',$r->get('car_id')],['remarks','!=','canceled']])->get();
-       
-       // $check2 = Booking::whereBetween('Booking_to',[$r->get('booking_from'),$r->get('booking_to')])->where([['car_id',$r->get('car_id')],['remarks','!=','canceled']])->get();
-       //  dd($check,$check2);
-    	
+        // dd($private1,$private2);
+        if($a != null){
+            if($r->get('booking_from') >= $a->booking_from && $r->get('booking_from') <= $b->booking_to){
+               return redirect()->back()->with('msg','This dates are unavailable, Please choose another dates');
+            }
+            if($r->get('booking_to') >= $a->booking_from && $r->get('booking_to') <= $b->booking_to){
+                return redirect()->back()->with('msg','This dates are unavailable, Please choose another dates');
+            }
+        }
+        if($private1 != null){
+            if($r->get('booking_from') >= $private1->booking_from && $r->get('booking_from') <= $private2->booking_to){
+               return redirect()->back()->with('msg','This dates are unavailable, Please choose another dates');
+            }
+            if($r->get('booking_to') >= $private1->booking_from && $r->get('booking_to') <= $private2->booking_to){
+                return redirect()->back()->with('msg','This dates are unavailable, Please choose another dates');
+            }
+        }
+    
         $booking = new Booking;
         $booking->booking_from = $r->get('booking_from');
         $booking->booking_to = $r->get('booking_to');
@@ -105,6 +114,38 @@ class BookingController extends Controller
         return view('user/editbooking',compact('booking'));
     }
     public function edit_user_booking(Request $r){
+         $validation = array(
+            'booking_from'=>'required',
+            'booking_to'=>'required'
+            
+            );
+
+    $r->validate($validation);
+        
+        $a = Booking::select('booking_from')->where([['car_id',$r->get('car_id')],['remarks','!=','canceled'],['remarks','!=','done']])->first();
+        $b = Booking::select('booking_to')->where([['car_id',$r->get('car_id')],['remarks','!=','canceled'],['remarks','!=','done']])->first();
+
+        $private1 = Booking::select('booking_from')->where([['privatecar_id',$r->get('privatecar_id')],['remarks','!=','canceled'],['remarks','!=','done']])->first();
+        $private2 = Booking::select('booking_to')->where([['privatecar_id',$r->get('privatecar_id')],['remarks','!=','canceled'],['remarks','!=','done']])->first();
+
+        // dd($private1,$private2);
+        if($a != null){
+            if($r->get('booking_from') >= $a->booking_from && $r->get('booking_from') <= $b->booking_to){
+               return redirect()->back()->with('msg','This dates are unavailable, Please choose another dates');
+            }
+            if($r->get('booking_to') >= $a->booking_from && $r->get('booking_to') <= $b->booking_to){
+                return redirect()->back()->with('msg','This dates are unavailable, Please choose another dates');
+            }
+        }
+        if($private1 != null){
+            if($r->get('booking_from') >= $private1->booking_from && $r->get('booking_from') <= $private2->booking_to){
+               return redirect()->back()->with('msg','This dates are unavailable, Please choose another dates');
+            }
+            if($r->get('booking_to') >= $private1->booking_from && $r->get('booking_to') <= $private2->booking_to){
+                return redirect()->back()->with('msg','This dates are unavailable, Please choose another dates');
+            }
+        }
+
         $id = $r->get('id');
         $booking = Booking::find($id);
         $booking->booking_from = $r->get('booking_from');
@@ -178,6 +219,9 @@ class BookingController extends Controller
 {
     $id = $r->get('id');
     $userid = $r->get('userid');
+
+    
+    $booking = Booking::where('privatecar_id',$id)->delete();
     
     $car = \App\PrivateCar::find($id);
         $image_path = public_path()."/uploads/".$car['image'];

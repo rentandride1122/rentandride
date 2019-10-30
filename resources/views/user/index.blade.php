@@ -1,8 +1,176 @@
-@include('user.includes.header')
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--=== Favicon ===-->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <title>Rent and Ride</title>
+
+    <!--=== Bootstrap CSS ===-->
+    <link href="{{ asset('user/assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!--=== Slicknav CSS ===-->
+    <link href="{{ asset('user/assets/css/plugins/slicknav.min.css') }}" rel="stylesheet">
+    <!--=== Magnific Popup CSS ===-->
+    <link href="{{ asset('user/assets/css/plugins/magnific-popup.css') }}" rel="stylesheet">
+    <!--=== Owl Carousel CSS ===-->
+    <link href="{{ asset('user/assets/css/plugins/owl.carousel.min.css') }}" rel="stylesheet">
+    <!--=== Gijgo CSS ===-->
+    <link href="{{ asset('user/assets/css/plugins/gijgo.css') }}" rel="stylesheet">
+    <!--=== FontAwesome CSS ===-->
+    <link href="{{ asset('user/assets/css/font-awesome.css') }}" rel="stylesheet">
+    <!--=== Theme Reset CSS ===-->
+    <link href="{{ asset('user/assets/css/reset.css') }}" rel="stylesheet">
+    <!--=== Main Style CSS ===-->
+    <link href="{{ asset('user/style.css') }}" rel="stylesheet">
+    <!--=== Responsive CSS ===-->
+    <link href="{{ asset('user/assets/css/responsive.css') }}" rel="stylesheet">
+
+
+   <link type="text/css" rel="stylesheet" href="{{ asset('user/assets/js/jquery-ui.min.css') }}">
+   <script src="{{ asset('user/assets/js/jquery-3.2.1.min.js') }}"></script>
+  
+ 
+</head>
+
+
+<body class="loader-active">
+
+
+    <!--== Header Area Start ==-->
+    <header id="header-area" class="fixed-top">
+        <!--== Header Top Start ==-->
+        <div id="header-top" class="d-none d-xl-block">
+            <div class="container">
+                <div class="row ">
+                    <!--== Single HeaderTop Start ==-->
+                    <div class="col-lg-3 text-left">
+                        <i class="fa fa-map-marker"></i> pipalboat, Dillibazar, Kathmandu
+                    </div>
+                    <!--== Single HeaderTop End ==-->
+
+                    <!--== Single HeaderTop Start ==-->
+                    <div class="col-lg-3 text-center">
+                        <i class="fa fa-mobile"></i> 014 234 567
+                    </div>
+                    <!--== Single HeaderTop End ==-->
+
+                     @if(Auth::check() == false)
+                        <div class="col-lg-3 ">
+                        </div>
+                     @else
+                    <!--== Single HeaderTop Start ==-->
+                    <div class="col-lg-3 ">
+                        
+                        <nav class="mainmenu alignright" style="margin-top: -12px;margin-bottom: -15px">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-bell"></i>
+                                    <span class="badge badge-light">{{ auth()->user()->unReadNotifications->count() }}</span>
+                                </a>
+                                    <ul>
+                                        <li style="background: #007bff"><a href="{{ url('user/notification/markAsRead') }}">Mark all as read</a></li>
+
+                                         @foreach(auth()->user()->unreadNotifications as $notification)
+                                        <li style="background: #4ECDC4">
+                                            <a href="#">{{ $notification->data['data'] }}
+                                                <br>
+                                                <p style="font-size: 10px">{{ $notification['created_at']->diffForHumans() }}</p>
+                                            </a>
+                                        </li>
+                                        @endforeach
+
+                                        @foreach(auth()->user()->readNotifications as $notification)
+                                        <li>
+                                            <a href="#">{{ $notification->data['data'] }}
+                                                 <p style="font-size: 10px">{{ $notification['created_at']->diffForHumans() }}</p>
+                                            </a>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                                
+                            </ul>
+                        </nav>
+                    
+                    </div>
+                    <!--== Single HeaderTop End ==-->
+                    @endif
+
+                    <!--== Social Icons Start ==-->
+                    <div class="col-lg-3 text-right">
+                        <div class="header-social-icons">
+                        @if(Auth::check())
+                            <a href="{{ url('user/update') }}" style="color: yellow">{{ Auth::user()->name }}</a> 
+                        @else
+                            <a href="{{ url('user/login') }}">Login</a>
+                        @endif
+
+                        <a href="">|</a>
+
+                        @if(Auth::check())
+
+                           <a href="{{ url('user/logout') }}">Logout</a>
+                        @else
+                            <a href="{{ url('user/register') }}">Register</a>
+                        @endif
+                            
+
+                        </div>
+                    </div>
+                    <!--== Social Icons End ==-->
+                </div>
+            </div>
+        </div>
+        <!--== Header Top End ==-->
+
+        <!--== Header Bottom Start ==-->
+        <div id="header-bottom">
+            <div class="container">
+                <div class="row">
+                    <!--== Logo Start ==-->
+                    <div class="col-lg-4">
+                        <a href="{{ url('user/index') }}" class="logo">
+                            <!-- <img src="assets/img/logo.png" alt="JSOFT"> -->
+                            <h2 style="color: white">Rent and Ride</h2>
+                        </a>
+                    </div>
+                    <!--== Logo End ==-->
+
+                    <!--== Main Menu Start ==-->
+                    <div class="col-lg-8 d-none d-xl-block">
+                        <nav class="mainmenu alignright">
+                            <ul>
+                                <li class="active"><a href="{{ url('user/index') }}">Home</a></li>
+                                
+                                <li><a href="{{ url('user/viewcars') }}">Cars</a></li>
+                                <li><a href="{{ url('user/viewprivatecars') }}">Private Cars</a></li>
+                                <li><a href="#">Services</a>
+                                    <ul>
+                                        <li><a href="{{ url('user/yourcar') }}">Your Cars</a></li>
+                                        
+                                      
+                                    </ul>
+                                </li>
+                                <li><a href="{{ url('user/forum') }}">Forum</a></li>
+                                <li><a href="{{ url('user/booking/detail') }}">My Booking</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!--== Main Menu End ==-->
+                </div>
+            </div>
+        </div>
+        <!--== Header Bottom End ==-->
+    </header>
+    <!--== Header Area End ==-->
+
 
 
     <!--== Slider Area Start ==-->
-    <section id="slider-area">
+    <section id="slider-area" style="margin-top: 41px">
         
         <!--== slide Item One ==-->
         <div class="single-slide-item overlay">
@@ -25,6 +193,21 @@
         <!--== slide Item One ==-->
     </section>
     <!--== Slider Area End ==-->
+     <div class="container">
+             @if(\Session::has('msg'))
+          <div class = 'alert alert-success'>
+            <p>{{ \Session::get('msg') }}</p>
+          </div></br>
+          @endif
+          @if($errors->any())
+          <div class = 'alert alert-danger'>
+            <ul>
+              @foreach($errors->all() as $e)
+              <li>{{ $e }}</li>
+              @endforeach
+            </ul>
+          </div>
+          @endif
 
     <!--== About Us Area Start ==-->
     <section id="about-area" class="section-padding">
@@ -35,15 +218,15 @@
                     <div class="section-title  text-center">
                         <h2>About us</h2>
                         <span class="title-line"><i class="fa fa-car"></i></span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <p>Welcome to Rent and Ride Service</p>
                     </div>
                 </div>
                 <!-- Section Title End -->
             </div>
 
-            <div class="row">
+            <div class="row text-center">
                 <!-- About Content Start -->
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div class="display-table">
                         <div class="display-table-cell">
                             <div class="about-content">
@@ -51,8 +234,8 @@
 
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi aliquid debitis optio praesentium, voluptate repellat accusantium deserunt eius.</p>
                                 <div class="about-btn">
-                                    <a href="#">Book a Car</a>
-                                    <a href="#">Contact Us</a>
+                                    <a href="{{ url('user/viewcars') }}">Book a Car</a>
+                                    <!-- <a href="#">Contact Us</a> -->
                                 </div>
                             </div>
                         </div>
@@ -60,13 +243,7 @@
                 </div>
                 <!-- About Content End -->
 
-                <!-- About Video Start -->
-                <div class="col-lg-6">
-                    <div class="about-video">
-                        <iframe src="https://player.vimeo.com/video/121982328?title=0&byline=0&portrait=0"></iframe>
-                    </div>
-                </div>
-                <!-- About Video End -->
+               
             </div>
         </div>
     </section>
@@ -154,88 +331,7 @@
     </div>
     <!--== Partner Area End ==-->
 
-    <!--== Services Area Start ==-->
-    <section id="service-area" class="section-padding">
-        <div class="container">
-            <div class="row">
-                <!-- Section Title Start -->
-                <div class="col-lg-12">
-                    <div class="section-title  text-center">
-                        <h2>Our Services</h2>
-                        <span class="title-line"><i class="fa fa-car"></i></span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    </div>
-                </div>
-                <!-- Section Title End -->
-            </div>
-
-           
-			<!-- Service Content Start -->
-			<div class="row">
-				<!-- Single Service Start -->
-				<div class="col-lg-4 text-center">
-					<div class="service-item">
-						<i class="fa fa-taxi"></i>
-						<h3>RENTAL CAR</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
-					</div>
-				</div>
-				<!-- Single Service End -->
-				
-				<!-- Single Service Start -->
-				<div class="col-lg-4 text-center">
-					<div class="service-item">
-						<i class="fa fa-cog"></i>
-						<h3>CAR REPAIR</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
-					</div>
-				</div>
-				<!-- Single Service End -->
-				
-				<!-- Single Service Start -->
-				<div class="col-lg-4 text-center">
-					<div class="service-item">
-						<i class="fa fa-map-marker"></i>
-						<h3>TAXI SERVICE</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
-					</div>
-				</div>
-				<!-- Single Service End -->
-				
-				<!-- Single Service Start -->
-				<div class="col-lg-4 text-center">
-					<div class="service-item">
-						<i class="fa fa-life-ring"></i>
-						<h3>life insurance</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
-					</div>
-				</div>
-				<!-- Single Service End -->
-				
-				<!-- Single Service Start -->
-				<div class="col-lg-4 text-center">
-					<div class="service-item">
-						<i class="fa fa-bath"></i>
-						<h3>car wash</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
-					</div>
-				</div>
-				<!-- Single Service End -->
-				
-				<!-- Single Service Start -->
-				<div class="col-lg-4 text-center">
-					<div class="service-item">
-						<i class="fa fa-phone"></i>
-						<h3>call driver</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
-					</div>
-				</div>
-				<!-- Single Service End -->
-			</div>
-			<!-- Service Content End -->
-        </div>
-    </section>
-    <!--== Services Area End ==-->
+ 
 
     <!--== Fun Fact Area Start ==-->
     <section id="funfact-area" class="overlay section-padding">
@@ -294,644 +390,7 @@
     <!--== Fun Fact Area End ==-->
 
 
-    <!--== Choose Car Area Start ==-->
-    <section id="choose-car" class="section-padding">
-        <div class="container">
-            <div class="row">
-                <!-- Section Title Start -->
-                <div class="col-lg-12">
-                    <div class="section-title  text-center">
-                        <h2>Choose your Car</h2>
-                        <span class="title-line"><i class="fa fa-car"></i></span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    </div>
-                </div>
-                <!-- Section Title End -->
-            </div>
+   
 
-            <div class="row">
-                <!-- Choose Area Content Start -->
-                <div class="col-lg-12">
-                    <div class="choose-content-wrap">
-                        <!-- Choose Area Tab Menu -->
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#popular_cars" role="tab" aria-selected="true">popular Cars</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#newest_cars" role="tab" aria-selected="false">newest cars</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#office_map" role="tab" aria-selected="false">Our Office</a>
-                            </li>
-                        </ul>
-                        <!-- Choose Area Tab Menu -->
-
-                        <!-- Choose Area Tab content -->
-                        <div class="tab-content" id="myTabContent">
-                            <!-- Popular Cars Tab Start -->
-                            <div class="tab-pane fade show active" id="popular_cars" role="tabpanel" aria-labelledby="home-tab">
-                                <!-- Popular Cars Content Wrapper Start -->
-                                <div class="popular-cars-wrap">
-                                    <!-- Filtering Menu -->
-                                    <div class="popucar-menu text-center">
-                                        <a href="#" data-filter="*" class="active">all</a>
-                                        <a href="#" data-filter=".con">Conver</a>
-                                        <a href="#" data-filter=".hat">Truck</a>
-                                        <a href="#" data-filter=".mpv">MPV</a>
-                                        <a href="#" data-filter=".sedan">Sedan</a>
-                                        <a href="#" data-filter=".suv">SUV</a>
-                                    </div>
-
-                                    <!-- Filtering Menu -->
-
-                                    <!-- PopularCars Tab Content Start -->
-                                    <div class="row popular-car-gird">
-                                        <!-- Single Popular Car Start -->
-                                        <div class="col-lg-4 col-md-6 con suv mpv">
-                                            <div class="single-popular-car">
-                                                <div class="p-car-thumbnails">
-                                                    <a class="car-hover" href="assets/img/car/car-1.jpg">
-                                                      <img src="assets/img/car/car-1.jpg" alt="JSOFT">
-                                                   </a>
-                                                </div>
-
-                                                <div class="p-car-content">
-                                                    <h3>
-                                                        <a href="#">Dodge Ram 1500</a>
-                                                        <span class="price"><i class="fa fa-tag"></i> $55/day</span>
-                                                    </h3>
-
-                                                    <h5>HATCHBACK</h5>
-
-                                                    <div class="p-car-feature">
-                                                        <a href="#">2017</a>
-                                                        <a href="#">manual</a>
-                                                        <a href="#">AIR CONDITION</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single Popular Car End -->
-
-                                        <!-- Single Popular Car Start -->
-                                        <div class="col-lg-4 col-md-6 hat sedan">
-                                            <div class="single-popular-car">
-                                                <div class="p-car-thumbnails">
-                                                    <a class="car-hover" href="assets/img/car/car-2.jpg">
-                                                      <img src="assets/img/car/car-2.jpg" alt="JSOFT">
-                                                   </a>
-                                                </div>
-
-                                                <div class="p-car-content">
-                                                    <h3>
-                                                        <a href="#">Dodge Ram 1500</a>
-                                                        <span class="price"><i class="fa fa-tag"></i> $55/day</span>
-                                                    </h3>
-
-                                                    <h5>HATCHBACK</h5>
-
-                                                    <div class="p-car-feature">
-                                                        <a href="#">2017</a>
-                                                        <a href="#">manual</a>
-                                                        <a href="#">AIR CONDITION</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single Popular Car End -->
-
-                                        <!-- Single Popular Car Start -->
-                                        <div class="col-lg-4 col-md-6 suv con mpv">
-                                            <div class="single-popular-car">
-                                                <div class="p-car-thumbnails">
-                                                    <a class="car-hover" href="assets/img/car/car-3.jpg">
-                                                      <img src="assets/img/car/car-3.jpg" alt="JSOFT">
-                                                   </a>
-                                                </div>
-
-                                                <div class="p-car-content">
-                                                    <h3>
-                                                        <a href="#">Dodge Ram 1500</a>
-                                                        <span class="price"><i class="fa fa-tag"></i> $55/day</span>
-                                                    </h3>
-
-                                                    <h5>HATCHBACK</h5>
-
-                                                    <div class="p-car-feature">
-                                                        <a href="#">2017</a>
-                                                        <a href="#">manual</a>
-                                                        <a href="#">AIR CONDITION</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single Popular Car End -->
-
-                                        <!-- Single Popular Car Start -->
-                                        <div class="col-lg-4 col-md-6 con hat">
-                                            <div class="single-popular-car">
-                                                <div class="p-car-thumbnails">
-                                                    <a class="car-hover" href="assets/img/car/car-4.jpg">
-                                                      <img src="assets/img/car/car-4.jpg" alt="JSOFT">
-                                                   </a>
-                                                </div>
-
-                                                <div class="p-car-content">
-                                                    <h3>
-                                                        <a href="#">Dodge Ram 1500</a>
-                                                        <span class="price"><i class="fa fa-tag"></i> $55/day</span>
-                                                    </h3>
-
-                                                    <h5>HATCHBACK</h5>
-
-                                                    <div class="p-car-feature">
-                                                        <a href="#">2017</a>
-                                                        <a href="#">manual</a>
-                                                        <a href="#">AIR CONDITION</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single Popular Car End -->
-
-                                        <!-- Single Popular Car Start -->
-                                        <div class="col-lg-4 col-md-6 con sedan mpv">
-                                            <div class="single-popular-car">
-                                                <div class="p-car-thumbnails">
-                                                    <a class="car-hover" href="assets/img/car/car-5.jpg">
-                                                      <img src="assets/img/car/car-5.jpg" alt="JSOFT">
-                                                   </a>
-                                                </div>
-
-                                                <div class="p-car-content">
-                                                    <h3>
-                                                        <a href="#">Dodge Ram 1500</a>
-                                                        <span class="price"><i class="fa fa-tag"></i> $55/day</span>
-                                                    </h3>
-
-                                                    <h5>HATCHBACK</h5>
-
-                                                    <div class="p-car-feature">
-                                                        <a href="#">2017</a>
-                                                        <a href="#">manual</a>
-                                                        <a href="#">AIR CONDITION</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single Popular Car End -->
-
-                                        <!-- Single Popular Car Start -->
-                                        <div class="col-lg-4 col-md-6 hat suv mpv">
-                                            <div class="single-popular-car">
-                                                <div class="p-car-thumbnails">
-                                                    <a class="car-hover" href="assets/img/car/car-6.jpg">
-                                                      <img src="assets/img/car/car-6.jpg" alt="JSOFT">
-                                                   </a>
-                                                </div>
-
-                                                <div class="p-car-content">
-                                                    <h3>
-                                                        <a href="#">Dodge Ram 1500</a>
-                                                        <span class="price"><i class="fa fa-tag"></i> $55/day</span>
-                                                    </h3>
-
-                                                    <h5>HATCHBACK</h5>
-
-                                                    <div class="p-car-feature">
-                                                        <a href="#">2017</a>
-                                                        <a href="#">manual</a>
-                                                        <a href="#">AIR CONDITION</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single Popular Car End -->
-                                    </div>
-                                    <!-- PopularCars Tab Content End -->
-                                </div>
-                                <!-- Popular Cars Content Wrapper End -->
-                            </div>
-                            <!-- Popular Cars Tab End -->
-
-                            <!-- Newest Cars Tab Start -->
-                            <div class="tab-pane fade" id="newest_cars" role="tabpanel" aria-labelledby="profile-tab">
-                                <!-- Newest Cars Content Wrapper Start -->
-                                <div class="popular-cars-wrap">
-                                    <!-- Filtering Menu -->
-                                    <div class="newcar-menu text-center">
-                                        <a href="#" data-filter="*" class="active">all</a>
-                                        <a href="#" data-filter=".toyota">toyota</a>
-                                        <a href="#" data-filter=".bmw">bmw</a>
-                                        <a href="#" data-filter=".audi">audi</a>
-                                        <a href="#" data-filter=".tata">Tata</a>
-                                    </div>
-
-                                    <!-- Filtering Menu -->
-
-                                    <!-- NewestCars Tab Content Start -->
-                                    <div class="row newest-car-gird">
-                                        <!-- Single Newest Car Start -->
-                                        <div class="col-lg-4 col-md-6 tata audi">
-                                            <div class="single-new-car">
-                                                <div class="p-car-thumbnails">
-                                                    <a class="car-hover" href="assets/img/car/car-6.jpg">
-                                                      <img src="assets/img/car/car-6.jpg" alt="JSOFT">
-                                                   </a>
-                                                </div>
-
-                                                <div class="p-car-content">
-                                                    <h3>
-                                                        <a href="#">Toyota RAV4 EV</a>
-                                                        <span class="price"><i class="fa fa-tag"></i> $35/day</span>
-                                                    </h3>
-
-                                                    <h5>Toyota</h5>
-
-                                                    <div class="p-car-feature">
-                                                        <a href="#">2018</a>
-                                                        <a href="#">Auto</a>
-                                                        <a href="#">Non AIR CONDITION</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single Newest Car End -->
-
-                                        <!-- Single Newest Car Start -->
-                                        <div class="col-lg-4 col-md-6 bmw tata toyota">
-                                            <div class="single-new-car">
-                                                <div class="p-car-thumbnails">
-                                                    <a class="car-hover" href="assets/img/car/car-5.jpg">
-                                                      <img src="assets/img/car/car-5.jpg" alt="JSOFT">
-                                                   </a>
-                                                </div>
-
-                                                <div class="p-car-content">
-                                                    <h3>
-                                                        <a href="#">Toyota RAV4 EV</a>
-                                                        <span class="price"><i class="fa fa-tag"></i> $35/day</span>
-                                                    </h3>
-
-                                                    <h5>Toyota</h5>
-
-                                                    <div class="p-car-feature">
-                                                        <a href="#">2018</a>
-                                                        <a href="#">Auto</a>
-                                                        <a href="#">Non AIR CONDITION</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single Newest Car End -->
-
-                                        <!-- Single Newest Car Start -->
-                                        <div class="col-lg-4 col-md-6 bmw">
-                                            <div class="single-new-car">
-                                                <div class="p-car-thumbnails">
-                                                    <a class="car-hover" href="assets/img/car/car-4.jpg">
-                                                      <img src="assets/img/car/car-4.jpg" alt="JSOFT">
-                                                   </a>
-                                                </div>
-
-                                                <div class="p-car-content">
-                                                    <h3>
-                                                        <a href="#">Toyota RAV4 EV</a>
-                                                        <span class="price"><i class="fa fa-tag"></i> $35/day</span>
-                                                    </h3>
-
-                                                    <h5>Toyota</h5>
-
-                                                    <div class="p-car-feature">
-                                                        <a href="#">2018</a>
-                                                        <a href="#">Auto</a>
-                                                        <a href="#">Non AIR CONDITION</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single Newest Car End -->
-                                    </div>
-                                    <!-- NewestCars Tab Content End -->
-                                </div>
-                                <!-- Newest Cars Content Wrapper End -->
-                            </div>
-                            <!-- Newest Cars Tab End -->
-
-                            <!-- Office Map Tab -->
-                            <div class="tab-pane fade" id="office_map" role="tabpanel" aria-labelledby="contact-tab">
-                                <div class="map-area">
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.6538067244583!2d90.37092511435942!3d23.79533919297639!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c0cce3251ab1%3A0x7a2aa979862a9643!2sJSoft!5e0!3m2!1sen!2sbd!4v1516771096779"></iframe>
-                                </div>
-                            </div>
-                            <!-- Office Map Tab -->
-                        </div>
-                        <!-- Choose Area Tab content -->
-                    </div>
-                </div>
-                <!-- Choose Area Content End -->
-            </div>
-        </div>
-    </section>
-    <!--== Choose Car Area End ==-->
-
-    <!--== Pricing Area Start ==-->
-    <section id="pricing-area" class="section-padding overlay">
-        <div class="container">
-            <div class="row">
-                <!-- Section Title Start -->
-                <div class="col-lg-12">
-                    <div class="section-title  text-center">
-                        <h2>Only quality for clients</h2>
-                        <span class="title-line"><i class="fa fa-car"></i></span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    </div>
-                </div>
-                <!-- Section Title End -->
-            </div>
-
-            <!-- Pricing Table Conatent Start -->
-            <div class="row">
-                <!-- Single Pricing Table -->
-                <div class="col-lg-4 col-md-6 text-center">
-                    <div class="single-pricing-table">
-                        <h3>BUSINESS</h3>
-                        <h2>$ 55.99</h2>
-                        <h5>PER MONTH</h5>
-
-                        <ul class="package-list">
-                            <li>FREE VEHICLE DELIVERY</li>
-                            <li>WEDDINGS CELEBRATIONS</li>
-                            <li>FULL INSURANCE INCLUDED</li>
-                            <li>TRANSPORT ABROAD</li>
-                            <li>ALL INCLUSIVE MINI BAR</li>
-                            <li>CHAUFFER INCLUDED IN PRICE</li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- Single Pricing Table -->
-
-                <!-- Single Pricing Table -->
-                <div class="col-lg-4 col-md-6 text-center">
-                    <div class="single-pricing-table">
-                        <h3>Trial</h3>
-                        <h2>Free</h2>
-                        <h5>PER MONTH</h5>
-
-                        <ul class="package-list">
-                            <li>FREE VEHICLE DELIVERY</li>
-                            <li>OTHER CELEBRATIONS</li>
-                            <li>FULL INSURANCE</li>
-                            <li>TRANSPORT ABROAD</li>
-                            <li>MINI BAR</li>
-                            <li>INCLUDED IN PRICE</li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- Single Pricing Table -->
-
-                <!-- Single Pricing Table -->
-                <div class="col-lg-4 col-md-6 text-center">
-                    <div class="single-pricing-table">
-                        <h3>standard</h3>
-                        <h2>$ 35.99</h2>
-                        <h5>PER MONTH</h5>
-
-                        <ul class="package-list">
-                            <li>DELIVERY AT AIRPORT</li>
-                            <li>WEDDINGS AND OTHER</li>
-                            <li>FULL INCLUDED</li>
-                            <li>TRANSPORT ABROAD</li>
-                            <li>ALL MINI BAR</li>
-                            <li>CHAUFFER PRICE</li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- Single Pricing Table -->
-            </div>
-            <!-- Pricing Table Conatent End -->
-        </div>
-    </section>
-    <!--== Pricing Area End ==-->
-
-    <!--== Testimonials Area Start ==-->
-    <section id="testimonial-area" class="section-padding">
-        <div class="container">
-            <div class="row">
-                <!-- Section Title Start -->
-                <div class="col-lg-12">
-                    <div class="section-title  text-center">
-                        <h2>Testimonials</h2>
-                        <span class="title-line"><i class="fa fa-car"></i></span>
-                        <p>Lorem ipsum dolor sit amet elit.</p>
-                    </div>
-                </div>
-                <!-- Section Title End -->
-            </div>
-
-            <div class="row">
-                <div class="col-lg-8 col-md-12 m-auto">
-                    <div class="testimonial-content">
-                        <!--== Single Testimoial Start ==-->
-                        <div class="single-testimonial">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis totam obcaecati impedit, at autem repellat vel magni architecto veritatis sed.</p>
-                            <h3>Vongchong Smith</h3>
-                            <div class="client-logo">
-                                <img src="assets/img/client/client-pic-1.jpg" alt="JSOFT">
-                            </div>
-                        </div>
-                        <!--== Single Testimoial End ==-->
-
-                        <!--== Single Testimoial Start ==-->
-                        <div class="single-testimonial">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis totam obcaecati impedit, at autem repellat vel magni architecto veritatis sed.</p>
-                            <h3>Amader Tuni</h3>
-                            <div class="client-logo">
-                                <img src="assets/img/client/client-pic-3.jpg" alt="JSOFT">
-                            </div>
-                        </div>
-                        <!--== Single Testimoial End ==-->
-
-                        <!--== Single Testimoial Start ==-->
-                        <div class="single-testimonial">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis totam obcaecati impedit, at autem repellat vel magni architecto veritatis sed.</p>
-                            <h3>Atex Tuntuni Smith</h3>
-                            <div class="client-logo">
-                                <img src="assets/img/client/client-pic-2.jpg" alt="JSOFT">
-                            </div>
-                        </div>
-                        <!--== Single Testimoial End ==-->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--== Testimonials Area End ==-->
-
-    <!--== Mobile App Area Start ==-->
-    <div id="mobileapp-video-bg"></div>
-    <section id="mobile-app-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="mobile-app-content">
-                        <h2>SAVE 30% WITH THE APP</h2>
-                        <p>Easy &amp; Fast - Book a car in 60 seconds</p>
-                        <div class="app-btns">
-                            <a href="#"><i class="fa fa-android"></i> Android Store</a>
-                            <a href="#"><i class="fa fa-apple"></i> Apple Store</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--== Mobile App Area End ==-->
-
-    <!--== Articles Area Start ==-->
-    <section id="tips-article-area" class="section-padding">
-        <div class="container">
-            <div class="row">
-                <!-- Section Title Start -->
-                <div class="col-lg-12">
-                    <div class="section-title  text-center">
-                        <h2>Tips and articles</h2>
-                        <span class="title-line"><i class="fa fa-car"></i></span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    </div>
-                </div>
-                <!-- Section Title End -->
-            </div>
-
-            <!-- Articles Content Wrap Start -->
-            <div class="row">
-                <!-- Single Articles Start -->
-                <div class="col-lg-12">
-                    <article class="single-article">
-                        <div class="row">
-                            <!-- Articles Thumbnail Start -->
-                            <div class="col-lg-5">
-                                <div class="article-thumb">
-                                    <img src="assets/img/article/arti-thumb-1.jpg" alt="JSOFT">
-                                </div>
-                            </div>
-                            <!-- Articles Thumbnail End -->
-
-                            <!-- Articles Content Start -->
-                            <div class="col-lg-7">
-                                <div class="display-table">
-                                    <div class="display-table-cell">
-                                        <div class="article-body">
-                                            <h3><a href="article-details.html">Wliquam sit amet urna eullam</a></h3>
-                                            <div class="article-meta">
-                                                <a href="#" class="author">By :: <span>Admin</span></a>
-                                                <a href="#" class="commnet">Comments :: <span>10</span></a>
-                                            </div>
-
-                                            <div class="article-date">25 <span class="month">jan</span></div>
-
-                                            <p>Wlam aiber vestibulum fringilla oremedad ipsum dolor sit amet consectetur adipisicing elit sed doned eiusmod tempored incididunt ut labore et dolore magna aliquaa enimd ad minim veniad.</p>
-
-                                            <a href="article-details.html" class="readmore-btn">Read More <i class="fa fa-long-arrow-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Articles Content End -->
-                        </div>
-                    </article>
-                </div>
-                <!-- Single Articles End -->
-
-                <!-- Single Articles Start -->
-                <div class="col-lg-12">
-                    <article class="single-article middle">
-                        <div class="row">
-
-                            <!-- Articles Thumbnail Start -->
-                            <div class="col-lg-5 d-xl-none">
-                                <div class="article-thumb">
-                                    <img src="assets/img/article/arti-thumb-2.jpg" alt="JSOFT">
-                                </div>
-                            </div>
-                            <!-- Articles Thumbnail End -->
-
-                            <!-- Articles Content Start -->
-                            <div class="col-lg-7">
-                                <div class="display-table">
-                                    <div class="display-table-cell">
-                                        <div class="article-body">
-                                            <h3><a href="article-details.html">fringilla oremedad ipsum dolor sit</a></h3>
-                                            <div class="article-meta">
-                                                <a href="#" class="author">By :: <span>Admin</span></a>
-                                                <a href="#" class="commnet">Comments :: <span>10</span></a>
-                                            </div>
-
-                                            <div class="article-date">14<span class="month">feb</span></div>
-
-                                            <p>Wlam aiber vestibulum fringilla oremedad ipsum dolor sit amet consectetur adipisicing elit sed doned eiusmod tempored incididunt ut labore et dolore magna aliquaa enimd ad minim veniad.</p>
-
-                                            <a href="article-details.html" class="readmore-btn">Read More <i class="fa fa-long-arrow-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Articles Content End -->
-
-                            <!-- Articles Thumbnail Start -->
-                            <div class="col-lg-5 d-none d-xl-block">
-                                <div class="article-thumb">
-                                    <img src="assets/img/article/arti-thumb-2.jpg" alt="JSOFT">
-                                </div>
-                            </div>
-                            <!-- Articles Thumbnail End -->
-                        </div>
-                    </article>
-                </div>
-                <!-- Single Articles End -->
-
-                <!-- Single Articles Start -->
-                <div class="col-lg-12">
-                    <article class="single-article">
-                        <div class="row">
-                            <!-- Articles Thumbnail Start -->
-                            <div class="col-lg-5">
-                                <div class="article-thumb">
-                                    <img src="assets/img/article/arti-thumb-3.jpg" alt="JSOFT">
-                                </div>
-                            </div>
-                            <!-- Articles Thumbnail End -->
-
-                            <!-- Articles Content Start -->
-                            <div class="col-lg-7">
-                                <div class="display-table">
-                                    <div class="display-table-cell">
-                                        <div class="article-body">
-                                            <h3><a href="article-details.html">Tempored incididunt ut labore</a></h3>
-                                            <div class="article-meta">
-                                                <a href="#" class="author">By :: <span>Admin</span></a>
-                                                <a href="#" class="commnet">Comments :: <span>10</span></a>
-                                            </div>
-
-                                            <div class="article-date">17 <span class="month">feb</span></div>
-
-                                            <p>Wlam aiber vestibulum fringilla oremedad ipsum dolor sit amet consectetur adipisicing elit sed doned eiusmod tempored incididunt ut labore et dolore magna aliquaa enimd ad minim veniad.</p>
-
-                                            <a href="article-details.html" class="readmore-btn">Read More <i class="fa fa-long-arrow-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Articles Content End -->
-                        </div>
-                    </article>
-                </div>
-                <!-- Single Articles End -->
-            </div>
-            <!-- Articles Content Wrap End -->
-        </div>
-    </section>
-    <!--== Articles Area End ==-->
 
  @include('user.includes.footer')

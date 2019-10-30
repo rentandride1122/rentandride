@@ -55,6 +55,14 @@ class UserController extends Controller
         //     'phone'=>'required',
         //     ]);
         // $user->update($data);
+        $validation = array(
+            'name'=>'required',
+            'phone'=>'required',
+            'address'=>'required|integer'
+            
+            );
+
+        $r->validate($validation);
 
         $id = Auth::user()->id;
         $user = User::find($id);

@@ -1,7 +1,5 @@
 @include('user.includes.header')
 
-
-
     <!--== Login Page Content Start ==-->
     <section id="lgoin-page-wrap" class="section-padding" style="margin-top: 70px">
         <div class="container">
@@ -9,6 +7,7 @@
                 <div class="col-lg-4 col-md-8 m-auto">
                 	<div class="login-page-content">
                 		<div class="login-form" style="background: #00FFCC">
+                            
                 			<h3>Welcome Back!</h3>
 							<form method="POST" action="{{ route('login') }}">
                                 @csrf

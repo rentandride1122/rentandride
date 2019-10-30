@@ -179,6 +179,20 @@
 
                     <div class="col-lg-5">
                         <div class="book-a-car">
+                             @if(\Session::has('msg'))
+          <div class = 'alert alert-success'>
+            <p>{{ \Session::get('msg') }}</p>
+          </div></br>
+          @endif
+          @if($errors->any())
+          <div class = 'alert alert-danger'>
+            <ul>
+              @foreach($errors->all() as $e)
+              <li>{{ $e }}</li>
+              @endforeach
+            </ul>
+          </div>
+          @endif
 
                             <form action="{{ url('user/edit/booking') }}" method="POST">
                                                                
@@ -197,6 +211,8 @@
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="_method" value="PUT">
                                 <input type="hidden" name="id" value="{{ $booking['id'] }}">
+                                <input type="hidden" name="car_id" value="{{ $booking['car_id'] }}">
+                                <input type="hidden" name="privatecar_id" value="{{ $booking['privatecar_id'] }}">
                                 <div class="book-button text-center">
                                     <button class="book-now-btn">Change</button>
                                 </div>

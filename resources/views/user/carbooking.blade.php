@@ -11,6 +11,20 @@
 
                     <div class="col-lg-5">
                         <div class="book-a-car">
+                             @if(\Session::has('msg'))
+          <div class = 'alert alert-success'>
+            <p>{{ \Session::get('msg') }}</p>
+          </div></br>
+          @endif
+          @if($errors->any())
+          <div class = 'alert alert-danger'>
+            <ul>
+              @foreach($errors->all() as $e)
+              <li>{{ $e }}</li>
+              @endforeach
+            </ul>
+          </div>
+          @endif
 
                             <form action="{{ url('client/bookcar') }}" method="POST">
                                                                
@@ -18,11 +32,11 @@
                                 <!--== Pick Up Date ==-->
                                 <div class="pick-up-date book-item">
                                     <h4>PICK-UP DATE:</h4>
-                                    <input type="text" id="datepicker"  name="booking_from" placeholder="Pick Up Date" />
+                                    <input type="text" id="datepicker" value="{{ old('booking_from') }}"  name="booking_from" placeholder="Pick Up Date" />
 
                                     <div class="return-car">
                                         <h4>Return DATE:</h4>
-                                        <input type="text" id="datepicker2" name="booking_to" placeholder="Return Date" />
+                                        <input type="text" value="{{ old('booking_to') }}" id="datepicker2" name="booking_to" placeholder="Return Date" />
                                     </div>
                                 </div>
                          

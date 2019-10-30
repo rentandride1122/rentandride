@@ -1,33 +1,11 @@
 @include('user.includes.header')
 
-<!--== Page Title Area Start ==-->
-    <section id="page-title-area" class="section-padding overlay">
-        <div class="container">
-            <div class="row">
-                <!-- Page Title Start -->
-                <div class="col-lg-12">
-                    <div class="section-title  text-center">
-                        <h2>Update Profile</h2>
-                        <span class="title-line"><i class="fa fa-car"></i></span>
-                        <p>Protected</p>
-                    </div>
-                </div>
-                <!-- Page Title End -->
-            </div>
-        </div>
-    </section>
-    <!--== Page Title Area End ==-->
+
 
     <!--== Contact Page Area Start ==-->
-    <div class="contact-page-wrao section-padding">
+    <div class="contact-page-wrao section-padding" style="margin-top: 70px">
         <div class="container">
 
-            <!--  <a href="{{ url('user/deleteuser') }}" class="btn btn-danger" style="float: right;">Deactivate account</a> -->
-              <form action = "{{ url('user/deleteuser') }}" method = 'POST'>
-                      <input type = 'hidden' name = '_token' value = '{{ csrf_token() }}' />
-                      <input type = 'hidden' name = '_method' value = 'DELETE' />
-                     <button class="btn btn-danger" style="float: right;">Deactivate Account</button>
-                      </form>
             <div class="row">
 
                 <div class="col-lg-10 m-auto">
@@ -62,7 +40,7 @@
 						<div class="form-group">
 						    <div class="col-sm-offset-2 col-sm-10">
 						      <input type="submit" class="btn btn-success" value="Update">
-                              <a href="" class="btn btn-info" style="background: #FF3E00">Change Password</a>
+                              
 
 						    </div>
 						</div>

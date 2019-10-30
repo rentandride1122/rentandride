@@ -18,7 +18,7 @@ Route::post('/admin/createcar','CarController@store')->middleware('admin');
 
 
 Route::get('/user/index', 'UserController@user_index')->name('user');
-Route::get('/user/login','UserController@login')->name('user.login')->middleware('auth');
+Route::get('/user/login','UserController@login')->name('user.login');
 Route::get('/user/register','UserController@register')->name('user.register');
 
 Route::get('/admin/updatecar/{car}','CarController@editcar');

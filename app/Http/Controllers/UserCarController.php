@@ -7,6 +7,7 @@ use Auth;
 use \App\PrivateCar;
 use \App\Car;
 use \App\User;
+use \App\Booking;
 use File;
 use App\Notifications\UserCarInsert;
 use App\Notifications\UserCarDelete;
@@ -111,7 +112,14 @@ class UserCarController extends Controller
 
     public function deleteyourcar(Request $r){
          $id = $r->get('id');
+         
+        $booking = Booking::where('privatecar_id',$id)->delete();
+
+       
+        // $booking->delete();
         $car = \App\PrivateCar::find($id);
+       
+        
         $image_path = public_path()."/uploads/".$car['image'];
         if(File::exists($image_path)) {
         File::delete($image_path);

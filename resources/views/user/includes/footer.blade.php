@@ -78,7 +78,7 @@ Copyright &copy;
 
     <!--== Scroll Top Area Start ==-->
     <div class="scroll-top">
-        <img src="{{ asset('assets/user/assets/img/scroll-top.png') }}" alt="JSOFT">
+        <img src="{{ asset('user/assets/img/scroll-top.png') }}" alt="JSOFT">
     </div>
     <!--== Scroll Top Area End ==-->
 

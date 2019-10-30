@@ -11,6 +11,20 @@
 
                     <div class="col-lg-5">
                         <div class="book-a-car">
+                             @if(\Session::has('msg'))
+          <div class = 'alert alert-success'>
+            <p>{{ \Session::get('msg') }}</p>
+          </div></br>
+          @endif
+          @if($errors->any())
+          <div class = 'alert alert-danger'>
+            <ul>
+              @foreach($errors->all() as $e)
+              <li>{{ $e }}</li>
+              @endforeach
+            </ul>
+          </div>
+          @endif
 
                             <form action="{{ url('client/bookcar') }}" method="POST">
                                                                
@@ -18,26 +32,14 @@
                                 <!--== Pick Up Date ==-->
                                 <div class="pick-up-date book-item">
                                     <h4>PICK-UP DATE:</h4>
-                                    <input type="date" name="booking_from" placeholder="Pick Up Date" />
+                                    <input type="text" id="datepicker" name="booking_from" placeholder="Pick Up Date" />
 
                                     <div class="return-car">
                                         <h4>Return DATE:</h4>
-                                        <input type="date" name="booking_to" placeholder="Return Date" />
+                                        <input type="text" id="datepicker2" name="booking_to" placeholder="Return Date" />
                                     </div>
                                 </div>
-                                <!--== Pick Up Location ==-->
-
-                                <!--== Car Choose ==-->
-                                <!-- <div class="choose-car-type book-item">
-                                    <h4>CHOOSE CAR TYPE:</h4>
-                                    <select class="custom-select">
-                                      <option selected>Select</option>
-                                      <option value="1">BMW</option>
-                                      <option value="2">Audi</option>
-                                      <option value="3">Lexus</option>
-                                    </select>
-                                </div> -->
-                                <!--== Car Choose ==-->
+                                
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="privatecar_id" value="{{ $privatecar_id }}">
                                 <div class="book-button text-center">
@@ -64,4 +66,27 @@
     </section>
     <!--== Slider Area End ==-->
 
-    @include('user.includes.footer')    
+    @include('user.includes.footer') 
+    <script src="{{ asset('user/assets/js/jquery-ui.min.js') }}"></script>
+ <script>
+  $( function() {
+    $( "#datepicker" ).datepicker({
+        showOtherMonths:true,
+        selectOtherMonths:true,
+        changeMonth:true,
+        minDate:new Date,
+        autoClose:true
+    });
+  } );
+  </script> 
+  <script>
+  $( function() {
+    $( "#datepicker2" ).datepicker({
+        showOtherMonths:true,
+        selectOtherMonths:true,
+        changeMonth:true,
+        minDate:new Date,
+        autoClose:true
+    });
+  } );
+  </script>     

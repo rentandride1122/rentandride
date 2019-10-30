@@ -60,6 +60,11 @@ public function deletemessage(Request $r)
 
       public function updatemessage(Request $r)
     {
+         $validations = array(
+            'comment' => 'required'
+        );
+        $r->validate($validations);
+        
             $id = $r->get('id');
 
             $forum = \App\Forum::find($id);
